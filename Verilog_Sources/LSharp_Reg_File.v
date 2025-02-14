@@ -40,9 +40,8 @@ module LSharp_Reg_File(
     // HL = 3
     // SP = 4
     // PC = 5
-    // Should never be accessed. In this implementation, they act as zero registers.
-    input [7:0] i_Read16, //Read a 16bit register SHOULD ONLY EVER BE ONE HOT
-    input [7:0] i_Write16, //Write the value in i_Bus16_In to an 16bit register
+    input [5:0] i_Read16, //Read a 16bit register SHOULD ONLY EVER BE ONE HOT
+    input [5:0] i_Write16, //Write the value in i_Bus16_In to an 16bit register
     input [15:0] i_Bus16, //The value to be written to an 16bit register
     output [15:0] o_Bus16 //The value being read from an 16bit register
     );
@@ -50,8 +49,8 @@ module LSharp_Reg_File(
     //8Bit Registers
     
     //These will be useful later for the 16bit writes
-    wire data_high8bits;
-    wire data_low8bits;
+    wire [7:0] data_high8bits;
+    wire [7:0] data_low8bits;
     
     //WZ are only used within opcodes to transfer data. They're essentially temporary values.
     wire [7:0] w_data;

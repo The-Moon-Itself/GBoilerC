@@ -40,7 +40,7 @@ module Incrementer_8Bit(
     //This feels too easy, like I'm doing something wrong.
     wire [4:0] first_nybble = i_A[3:0] + (i_Decrement ? 4'b1111 : 4'b0001);
     wire [4:0] second_nybble = i_A[7:4] + first_nybble[4];
-    wire result = {second_nybble[3:0], first_nybble[3:0]};
+    wire [7:0] result = {second_nybble[3:0], first_nybble[3:0]};
     assign o_A = result;
     assign o_F = {result == 0,
                   i_Decrement,

@@ -75,12 +75,11 @@ module ALU(
     // Unused values are treated as on.
     wire [3:0] flag_bus;
     wire [3:0] F_new_data = i_Write[1] ? i_Data[7:4] : flag_bus;
-    wire F_write;
     wire [3:0] flags;
     Register #(.SIZE(4)) Reg_F
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
-    .i_Write(F_write | i_Write[1]),
+    .i_Write(i_Save_Flags | i_Write[1]),
     .i_Data(F_new_data),
     .o_Data(flags)
     );

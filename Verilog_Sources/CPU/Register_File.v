@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module LSharp_Reg_File(
+module Register_File(
     input i_Clk, //Our system clock
     input i_Enable, //Used to disable the component when the system is not being ticked
     //8 Bit Register Codes:

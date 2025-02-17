@@ -23,10 +23,10 @@
 //Performs some miscellaneous functions on the accumulator and flags.
 module Misc_ALU(
     input [7:0] i_A, // The accumulator
-    input [3:0] i_F,
+    input [3:0] i_F, //The current flags
     input [1:0] i_Opcode, // Bits [5:4] of the opcode
-    output [7:0] o_A,
-    output [3:0] o_F
+    output [7:0] o_A, //New value for the accumulator
+    output [3:0] o_F //New flags
     );
     
     // Operations:

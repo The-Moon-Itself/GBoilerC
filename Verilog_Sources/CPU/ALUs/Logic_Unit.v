@@ -23,27 +23,27 @@
 module Logic_Unit(
     input [7:0] i_A, //The parameter
     input [3:0] i_F, //Old flags
-    input [5:0] i_Opcode, //[7:3] of the opcode
+    input [4:0] i_Opcode, //[7:3] of the opcode
     input i_Disable_Z, //Used by non CB-Prefixed opcodes. A holdover from the Z80, which did this for compatibility with the Intel 8080
     output [7:0] o_A, //Result
     output [3:0] o_F //New Flags
     );
     
     //Operations:
-    //  bit 5 = 0:
-    //      bit 4 = 0
-    //          bit 3:0 = 0: Rotate Left (RLC)
-    //          bit 3:0 = 1: Rotate Right (RRC)
-    //          bit 3:0 = 2: Rotate Left w/ Carry (RL)
-    //          bit 3:0 = 3: Rotate Right w/ Carry (RR)
-    //          bit 3:0 = 4: Shift Left Arithmetic (SLA)
-    //          bit 3:0 = 5: Shift Right Arithermetic (SRA)
-    //          bit 3:0 = 6: Swap nybbles (SWAP)
-    //          bit 3:0 = 7: Shift Right Logical (SRL)
+    //  bit 4 = 0:
+    //      bit 3 = 0
+    //          bit 2:0 = 0: Rotate Left (RLC)
+    //          bit 2:0 = 1: Rotate Right (RRC)
+    //          bit 2:0 = 2: Rotate Left w/ Carry (RL)
+    //          bit 2:0 = 3: Rotate Right w/ Carry (RR)
+    //          bit 2:0 = 4: Shift Left Arithmetic (SLA)
+    //          bit 2:0 = 5: Shift Right Arithermetic (SRA)
+    //          bit 2:0 = 6: Swap nybbles (SWAP)
+    //          bit 2:0 = 7: Shift Right Logical (SRL)
     //
-    //      bit 4 = 1: Check bit opcode[3:0] of parameter
+    //      bit 3 = 1: Check bit opcode[2:0] of parameter
     //
-    //  bit 5 = 1: Set bit opcode[3:0] of parameter to opcode[4]
+    //  bit 4 = 1: Set bit opcode[2:0] of parameter to opcode[3]
     
     
     wire right_shift = i_Opcode[0]; //We are performing a right shift/rot

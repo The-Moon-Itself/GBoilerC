@@ -115,7 +115,7 @@ module ALU(
     //Logic Unit
     wire [7:0] logic_res;
     wire [3:0] logic_flags;
-    Logic_Unit logic
+    Logic_Unit logic_unit
     (.i_A(i_Parameter),
     .i_F(flags),
     .i_Opcode(i_Opcode[7:3]),

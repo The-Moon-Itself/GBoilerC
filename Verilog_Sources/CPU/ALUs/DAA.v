@@ -62,5 +62,5 @@ module DAA(
                          1'b0, {2{low_offset}}, 1'b0 } ^ {8{i_F[2]}};
     wire [7:0] result = i_A + offset + i_F[2];
     assign o_A = result;
-    assign o_F = {result == 0, i_F[2], 0, high_offset};
+    assign o_F = {result == 0, i_F[2], 1'b0, high_offset};
 endmodule

@@ -107,6 +107,7 @@ module ALU(
     Incrementer_8Bit inc
     (.i_A(i_Parameter),
     .i_F(flags),
+    .i_Active(1'b1),
     .i_Decrement(i_Function_Control[2]),
     .o_A(inc_res),
     .o_F(inc_flags)

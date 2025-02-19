@@ -52,6 +52,7 @@ module ALU(
     // bit 5 - Enable Misc ALU
     // Enabling a unit will set o_Result and flag_bus to that unit's output.
     input [5:0] i_Function_Control, //Control bits to select function
+    input [3:0] i_External_Flags, //New flags from external (16bit) functions. Should be 0 when not used.
     input i_Save_Flags, //Saves new flags from a function to the flags register
     output [7:0] o_Result //Function output
     );
@@ -143,6 +144,7 @@ module ALU(
     assign flag_bus = ({4{i_Function_Control[0]}} & main_flags) |
                       ({4{i_Function_Control[1]}} & inc_flags) |
                       ({4{i_Function_Control[3]}} & logic_flags) |
-                      ({4{i_Function_Control[5]}} & misc_flags);
+                      ({4{i_Function_Control[5]}} & misc_flags) |
+                      i_External_Flags;
     
 endmodule

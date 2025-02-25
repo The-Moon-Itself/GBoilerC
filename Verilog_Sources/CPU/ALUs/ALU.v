@@ -54,7 +54,8 @@ module ALU(
     input [5:0] i_Function_Control, //Control bits to select function
     input [3:0] i_External_Flags, //New flags from external (16bit) functions. Should be 0 when not used.
     input i_Save_Flags, //Saves new flags from a function to the flags register
-    output [7:0] o_Result //Function output
+    output [7:0] o_Result, //Function output
+    output [3:0] o_Flags //Current flags
     );
     
     
@@ -87,6 +88,7 @@ module ALU(
     
     assign o_Reg_Data = ({8{i_Read[0]}} & A_data) |
                         ({8{i_Read[1]}} & {flags, 4'hf});
+    assign o_Flags = flags;
     
     //Functions
     

@@ -18,6 +18,8 @@
 //  Bit16/
 //      Incrementer_16Bit.V
 //      Add16_r8.v
+//  ControlUnit/
+//      ControlUnit.v
 //
 // Revision:
 // Revision 0.01 - File Created
@@ -42,10 +44,11 @@ module CPU(
     
     //Instruction Register
     wire [7:0] opcode;
+    wire writeIR;
     Register instruction_register
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
-    .i_Write(), //CONTROL LINE. TO DO!!
+    .i_Write(writeIR),
     .i_Data(i_Bus),
     .o_Data(opcode)
     );
@@ -60,24 +63,31 @@ module CPU(
     
     //Register File
     wire [7:0] registers_out;
+    wire [7:0] read8;
+    wire [7:0] write8;
+    wire [5:0] read16;
+    wire [5:0] write16;
     Register_File registers
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
-    .i_Read8(), //CONTROL LINE. TODO!!
-    .i_Write8(), //CONTROL LINE. TODO!!
+    .i_Read8(read8),
+    .i_Write8(write8),
     .i_Bus8(bus_8bit_dst),
     .o_Bus8(registers_out),
-    .i_Read16(), //CONTROL LINE. TODO!!
-    .i_Write16(), //CONTROL LINE. TODO!!
+    .i_Read16(read16),
+    .i_Write16(write16),
     .i_Bus16(bus_16bit_src),
     .o_Bus16(bus_16bit_dst)
     );
     
+    //Needed up here for ALU
+    wire add_r8_enable; //CONTROL LINE. TODO!!
     
     //8Bit Stuff
     wire [3:0] add_r8_flags;
     wire [7:0] alu_reg_data;
     wire [7:0] alu_result;
+    wire [3:0] flags;
     ALU alu
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
@@ -89,28 +99,27 @@ module CPU(
     .i_Opcode(opcode),
     .i_Parameter(bus_8bit_src),
     .i_Function_Control(), //CONTROL LINE. TODO!!
+    .i_External_Flags(add_r8_flags & {4{add_r8_enable}}),
     .i_Save_Flags(), //CONTROL LINE. TODO!!
-    .o_Result(alu_result)
+    .o_Result(alu_result),
+    .o_Flags(flags)
     );
     
     
     assign o_Bus = bus_8bit_src;
     
-    wire read_data_bus; //Puts data from memory onto the data bus. //CONTROL LINE. TODO!!
-    assign o_Bus_In = read_data_bus;
-    wire write_data_bus; //Tells system to write data bus data to memory //CONTROL LINE. TODO!!
-    assign o_Bus_Out = write_data_bus;
-    
-    wire high_byte_to_bus; //Puts the high byte of the 16bit bus onto the 8bit bus //CONTROL LINE. TODO!!
-    wire low_byte_to_bus; //Puts the low byte of the 16bit bus onto the 8bit bus //CONTROL LINE. TODO!!
+   //Puts a byte of the 16bit bus onto the 8bit bus
+   //   Bit 0: Low Byte
+   //   Bit 1: High Byte
+    wire [1:0] bus16_byte_to_bus;
     assign bus_8bit_src = registers_out |
-                          alu_result |
-                          ({8{read_data_bus}} & i_Bus) |
-                          ({8{high_byte_to_bus}} & bus_16bit_src[15:8]) |
-                          ({8{low_byte_to_bus}} & bus_16bit_src[7:0]);
+                          alu_reg_data;
+    assign bus_8bit_dst = alu_result |
+                          ({8{o_Bus_Out}} & i_Bus) |
+                          ({8{bus16_byte_to_bus[1]}} & bus_16bit_src[15:8]) |
+                          ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]);
     
     //16Bit Stuff
-    wire add_r8_enable; //CONTROL LINE. TODO!!
     wire [15:0] add_r8_result;
     Add16_r8 add_r8
     (.i_In16(bus_16bit_src),
@@ -119,18 +128,35 @@ module CPU(
     .o_Flags(add_r8_flags)
     );
     
-    wire increment_16_active; //CONTROL LINE. TODO!!
-    wire increment_16_decrement; //CONTROL LINE. TODO!!
-    Incrementer_16bit
+    wire [1:0] increment16; //CONTROL LINE. TODO!!
+    Incrementer_16bit inc16
     (.i_In(add_r8_result),
-    .i_Active(increment_16_active),
-    .i_Decrement(increment_16_decrement),
+    .i_Active(increment16[0]),
+    .i_Decrement(increment16[1]),
     .o_Out(bus_16bit_dst),
     .o_Carry()
     );
     
-    assign o_Address = add_r8_result;
-    wire write_address; //Tells system to start loading the address on the 16bit data line.
-    assign o_Address_Out = o_Address;
+    ControlUnit cu
+    (.i_Clk(i_Clk),
+    .i_Enable(i_Enable),
+    .i_Opcode(opcode),
+    .i_Flags(flags),
+    .i_Interrupts(i_Interrupts),
+    .o_Handle_Interrupt(o_Handle_Interrupt),
+    
+    .o_WriteIR(writeIR),
+    .o_Read8(read8),
+    .o_Write8(write8),
+    .o_Read16(read16),
+    .o_Write16(write16),
+    
+    .o_Bus_Out(o_Bus_Out),
+    .o_Bus_In(o_Bus_In),
+    .o_Address_Out(o_Address_Out),
+    
+    .o_Increment16(increment16),
+    .o_Bus16_Byte_To_Bus(bus16_byte_to_bus)
+    );
     
 endmodule

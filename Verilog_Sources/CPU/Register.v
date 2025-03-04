@@ -34,7 +34,7 @@ module Register #(SIZE = 8, INITIAL = 0) (
     
     always @(posedge i_Clk) begin
         if (i_Enable == 1 && i_Write == 1) begin
-            o_Data = i_Data;
+            o_Data <= i_Data;
         end
     end
 endmodule

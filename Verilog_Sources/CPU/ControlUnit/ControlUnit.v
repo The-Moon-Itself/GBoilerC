@@ -65,12 +65,12 @@ module ControlUnit(
     //16Bus Selector:
     //  Bit 0: Low Byte
     //  Bit 1: High Byte
-    output [1:0] o_16bus_To_8bus //Puts one of the bytes of the 16bit bus onto the 8bit bus. Good for SP and PC stuff
+    output [1:0] o_Bus16_Byte_To_Bus //Puts one of the bytes of the 16bit bus onto the 8bit bus. Good for SP and PC stuff
     );
     
     wire reset_cycle;
     wire [4:0] step;
-    CU_Clock
+    CU_Clock cu_clock
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_Reset(reset_cycle),
@@ -85,7 +85,7 @@ module ControlUnit(
     .i_Disable(IR_read_step),
     .o_Out(cycle_step)
     );
-    wire [8:0] cycle_count; //How many M-Cycles since the start of the Opcode
+    wire [7:0] cycle_count; //How many M-Cycles since the start of the Opcode
     Decoder #(.SIZE(8)) cycle_decoder
     (.i_In(step[4:2]),
     .i_Disable(IR_read_step),
@@ -101,7 +101,7 @@ module ControlUnit(
     wire [1:0] fetch_increment16;
     wire fetch_reset_cycle;
     NOP_Microcode fetch
-    (.i_Active(initialize_fetch & end_opcode_fetch),
+    (.i_Active(initialize_fetch | end_opcode_fetch),
     .i_Cycle_Step(cycle_step),
     .o_Read16(fetch_read16),
     .o_Write16(fetch_write16),
@@ -165,6 +165,8 @@ module ControlUnit(
     wire [1:0] x0_Bus16_Byte_To_Bus;
     X0 x0
     (.i_Active(X[0]),
+    .i_Cycle_Step(cycle_step),
+    .i_Cycle_Count(cycle_count),
     .i_Y(Y),
     .i_Z(Z),
     .i_P(P),
@@ -177,10 +179,9 @@ module ControlUnit(
     .o_Bus_In(x0_Bus_In),
     .o_Bus_Out(x0_Bus_Out),
     .o_Address_Out(x0_Address_Out),
-    .o_Increment16(o_Increment16),
-    .o_Bus16_Byte_To_Bus(o_Bus16_Byte_To_Bus)
+    .o_Increment16(x0_Increment16),
+    .o_Bus16_Byte_To_Bus(x0_Bus16_Byte_To_Bus)
     );
-    
     
     assign o_WriteIR = IR_read_step;
     
@@ -200,7 +201,7 @@ module ControlUnit(
     
     always @(posedge(i_Clk)) begin
         if(fetch_reset_cycle & i_Enable) begin
-            initialize_fetch = 0;
+            initialize_fetch <= 0;
         end
     end 
 endmodule

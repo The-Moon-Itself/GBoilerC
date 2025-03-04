@@ -45,10 +45,10 @@ module X0(
     );
     
     
-    wire NOP_Active = i_Y[0] & i_Z[0] & i_Active;
-    wire LDa16SP_Active = i_Y[0] & i_Z[1] & i_Active;
+    wire NOP_Active = i_Z[0] & i_Y[0] & i_Active;
+    wire LDa16SP_Active = i_Z[0] & i_Y[1] & i_Active;
     
-    wire LDrpd16_Active = i_Y[1] & i_Q[0] & i_Active;
+    wire LDrpd16_Active = i_Z[1] & i_Q[0] & i_Active;
     
     
     wire LDa16SP_IR_Fetch;
@@ -86,6 +86,7 @@ module X0(
     (.i_Active(LDrpd16_Active),
     .i_Cycle_Step(i_Cycle_Step),
     .i_Cycle_Count(i_Cycle_Count),
+    .i_P(i_P),
     .o_IR_Fetch(LDrpd16_IR_Fetch),
     .o_Write8(LDrpd16_Write8),
     .o_Read16(LDrpd16_Read16),

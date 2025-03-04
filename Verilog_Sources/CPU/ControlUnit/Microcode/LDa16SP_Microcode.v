@@ -40,7 +40,7 @@ module LDa16SP_Microcode(
     wire address_store = i_Cycle_Count[2] | i_Cycle_Count[3];
     wire read_memory = i_Active & i_Cycle_Step[0] & (i_Cycle_Count[1] | i_Cycle_Count[2]);
     wire write_memory = i_Active & i_Cycle_Step[0] & (i_Cycle_Count[3] | i_Cycle_Count[4]);
-    assign o_Write8 = {8{read_memory}} & {6'b000000, i_Cycle_Count[2], i_Cycle_Count[1]}; //Little Endian
+    assign o_Write8 = {8{read_memory}} & {6'b000000, i_Cycle_Count[1], i_Cycle_Count[2]}; //Little Endian
     assign o_Read16 = {set_address, write_memory, 3'b000, set_address} & {address_immediate, 4'h8, address_store};
     assign o_Write16 = o_Read16 & 6'b100001;
     assign o_Increment16 = {1'b0, set_address & (address_immediate | address_store)};

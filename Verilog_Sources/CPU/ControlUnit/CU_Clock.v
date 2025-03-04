@@ -24,11 +24,11 @@ module CU_Clock(
     input i_Clk, //The system clock
     input i_Enable, //Enables the clock
     input i_Reset, //Reset to step 0
-    output reg [4:0] o_Step = 0 //The current step
+    output reg [4:0] o_Step = 5'b00000 //The current step
     );
     always @(posedge i_Clk) begin
         if(i_Enable) begin
-            o_Step = i_Reset ? 5'b0 : o_Step + 1;
+            o_Step <= i_Reset ? 5'b0 : o_Step + 1;
         end
     end
 endmodule

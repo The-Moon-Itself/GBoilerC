@@ -33,7 +33,7 @@ module CPU(
     input i_Enable, //Clock enable
     input [7:0] i_Bus, //Data read from memory
     input [4:0] i_Interrupts, //Bitflags for pending interrupts, lower bits have priority
-    input [15:0] o_Address, //Address for accessing memory
+    output [15:0] o_Address, //Address for accessing memory
     output [7:0] o_Bus, //Data written to memory
     output o_Bus_Out, //On if we are currently writing memory
     output o_Bus_In, //On if we are currently reading memory
@@ -76,8 +76,8 @@ module CPU(
     .o_Bus8(registers_out),
     .i_Read16(read16),
     .i_Write16(write16),
-    .i_Bus16(bus_16bit_src),
-    .o_Bus16(bus_16bit_dst)
+    .i_Bus16(bus_16bit_dst),
+    .o_Bus16(bus_16bit_src)
     );
     
     //Needed up here for ALU
@@ -106,7 +106,7 @@ module CPU(
     );
     
     
-    assign o_Bus = bus_8bit_src;
+    assign o_Bus = bus_8bit_dst;
     
    //Puts a byte of the 16bit bus onto the 8bit bus
    //   Bit 0: Low Byte
@@ -115,7 +115,7 @@ module CPU(
     assign bus_8bit_src = registers_out |
                           alu_reg_data;
     assign bus_8bit_dst = alu_result |
-                          ({8{o_Bus_Out}} & i_Bus) |
+                          ({8{o_Bus_In}} & i_Bus) |
                           ({8{bus16_byte_to_bus[1]}} & bus_16bit_src[15:8]) |
                           ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]);
     
@@ -127,6 +127,8 @@ module CPU(
     .o_Out(add_r8_result),
     .o_Flags(add_r8_flags)
     );
+    
+  	assign o_Address = add_r8_result;
     
     wire [1:0] increment16; //CONTROL LINE. TODO!!
     Incrementer_16bit inc16

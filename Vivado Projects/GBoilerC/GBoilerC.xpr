@@ -152,6 +152,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>

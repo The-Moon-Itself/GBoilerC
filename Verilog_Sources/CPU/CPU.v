@@ -81,7 +81,9 @@ module CPU(
     );
     
     //Needed up here for ALU
-    wire add_r8_enable; //CONTROL LINE. TODO!!
+    // Bit 0: Enable Add r8
+    // Bit 1: Save Add r8 Flags
+    wire [1:0] add_r8_control; //CONTROL LINE. TODO!!
     
     //8Bit Stuff
     wire [3:0] add_r8_flags;
@@ -99,7 +101,7 @@ module CPU(
     .i_Opcode(opcode),
     .i_Parameter(bus_8bit_src),
     .i_Function_Control(), //CONTROL LINE. TODO!!
-    .i_External_Flags(add_r8_flags & {4{add_r8_enable}}),
+    .i_External_Flags(add_r8_flags & {4{add_r8_control[1]}}),
     .i_Save_Flags(), //CONTROL LINE. TODO!!
     .o_Result(alu_result),
     .o_Flags(flags)
@@ -123,21 +125,24 @@ module CPU(
     wire [15:0] add_r8_result;
     Add16_r8 add_r8
     (.i_In16(bus_16bit_src),
-    .i_r8(bus_8bit_src & {8{add_r8_enable}}),
+    .i_r8(bus_8bit_src),
     .o_Out(add_r8_result),
     .o_Flags(add_r8_flags)
     );
     
-  	assign o_Address = add_r8_result;
+  	assign o_Address = bus_16bit_src;
     
     wire [1:0] increment16; //CONTROL LINE. TODO!!
+    wire [15:0] increment16_result;
     Incrementer_16bit inc16
-    (.i_In(add_r8_result),
+    (.i_In(bus_16bit_src),
     .i_Active(increment16[0]),
     .i_Decrement(increment16[1]),
-    .o_Out(bus_16bit_dst),
+    .o_Out(increment16_result),
     .o_Carry()
     );
+    
+    assign bus_16bit_dst = add_r8_control[0] ? add_r8_result : increment16_result;
     
     ControlUnit cu
     (.i_Clk(i_Clk),
@@ -158,6 +163,7 @@ module CPU(
     .o_Address_Out(o_Address_Out),
     
     .o_Increment16(increment16),
+    .o_Add_r8_Control(add_r8_control),
     .o_Bus16_Byte_To_Bus(bus16_byte_to_bus)
     );
     

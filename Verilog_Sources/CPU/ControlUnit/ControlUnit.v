@@ -59,9 +59,13 @@ module ControlUnit(
     output o_Address_Out, //On if we are setting a target memory address
     
     //Incrementer Control:
-    // Bit 0; Active
+    // Bit 0: Active
     // Bit 1: Decrement
     output [1:0] o_Increment16, //Increments the 16bit address line
+    //Add r8 Control:
+    // Bit 0: Active
+    // Bit 1: Save Flags
+    output [1:0] o_Add_r8_Control, //Adds the value on the 8bit bus to the 16bit bus as a signed byte
     //16Bus Selector:
     //  Bit 0: Low Byte
     //  Bit 1: High Byte
@@ -155,6 +159,7 @@ module ControlUnit(
     
     
     wire x0_fetch;
+    wire [7:0] x0_read8;
     wire [7:0] x0_write8;
     wire [5:0] x0_read16;
     wire [5:0] x0_write16;
@@ -162,6 +167,7 @@ module ControlUnit(
     wire x0_Bus_Out;
     wire x0_Address_Out;
     wire [1:0] x0_Increment16;
+    wire [1:0] x0_Add_r8_Control;
     wire [1:0] x0_Bus16_Byte_To_Bus;
     X0 x0
     (.i_Active(X[0]),
@@ -173,6 +179,7 @@ module ControlUnit(
     .i_Q(Q),
     .i_Conditions(conditions),
     .o_Fetch(x0_fetch),
+    .o_Read8(x0_read8),
     .o_Write8(x0_write8),
     .o_Read16(x0_read16),
     .o_Write16(x0_write16),
@@ -180,11 +187,13 @@ module ControlUnit(
     .o_Bus_Out(x0_Bus_Out),
     .o_Address_Out(x0_Address_Out),
     .o_Increment16(x0_Increment16),
+    .o_Add_r8_Control(x0_Add_r8_Control),
     .o_Bus16_Byte_To_Bus(x0_Bus16_Byte_To_Bus)
     );
     
     assign o_WriteIR = IR_read_step;
     
+    assign o_Read8 = x0_read8;
     assign o_Write8 = x0_write8;
     assign o_Read16 = fetch_read16 | x0_read16;
     assign o_Write16 = fetch_write16 | x0_write16;
@@ -194,6 +203,7 @@ module ControlUnit(
     assign o_Address_Out = fetch_address_out | x0_Address_Out;
     
     assign o_Increment16 = fetch_increment16 | x0_Increment16;
+    assign o_Add_r8_Control = x0_Add_r8_Control;
     assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus;
     
     assign end_opcode_fetch = x0_fetch;

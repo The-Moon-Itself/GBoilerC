@@ -28,6 +28,7 @@ module ControlUnit(
     //Clock inputs
     input i_Clk,
     input i_Enable,
+    input i_nRst,
     //Opcode Data
     input [7:0] i_Opcode,
     input [3:0] i_Flags,
@@ -81,6 +82,7 @@ module ControlUnit(
     CU_Clock cu_clock
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Reset(reset_cycle),
     .o_Step(step)
     );
@@ -216,8 +218,11 @@ module ControlUnit(
     assign end_opcode_fetch = x0_fetch;
     assign reset_cycle = fetch_reset_cycle;
     
-    always @(posedge(i_Clk)) begin
-        if(fetch_reset_cycle & i_Enable) begin
+    always @(posedge(i_Clk), negedge(i_nRst)) begin
+        if(!i_nRst) begin
+            initialize_fetch <= 1;
+        end
+        else if(fetch_reset_cycle & i_Enable) begin
             initialize_fetch <= 0;
         end
     end 

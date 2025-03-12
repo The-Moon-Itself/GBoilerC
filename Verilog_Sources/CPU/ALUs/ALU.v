@@ -28,6 +28,7 @@
 module ALU(
     input i_Clk, //The system clock
     input i_Enable, //Clock enable
+    input i_nRst, //Reset on low
     
     //Register IO
     // Read/Write indexing:
@@ -66,6 +67,7 @@ module ALU(
     Register Reg_A
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write[0]),
     .i_Data(i_Data),
     .o_Data(A_data)
@@ -81,6 +83,7 @@ module ALU(
     Register #(.SIZE(4)) Reg_F
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Save_Flags | i_Write[1]),
     .i_Data(F_new_data),
     .o_Data(flags)

@@ -31,6 +31,7 @@
 module CPU(
     input i_Clk, //The system clock
     input i_Enable, //Clock enable
+    input i_nRst, //Reset on low
     input [7:0] i_Bus, //Data read from memory
     input [4:0] i_Interrupts, //Bitflags for pending interrupts, lower bits have priority
     output [15:0] o_Address, //Address for accessing memory
@@ -48,6 +49,7 @@ module CPU(
     Register instruction_register
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(writeIR),
     .i_Data(i_Bus),
     .o_Data(opcode)
@@ -74,6 +76,7 @@ module CPU(
     .i_Enable(i_Enable),
     .i_Read8(read8),
     .i_Write8(write8),
+    .i_nRst(i_nRst),
     .i_Bus8(bus_8bit_dst),
     .o_Bus8(registers_out),
     .i_Read16(read16),
@@ -94,6 +97,7 @@ module CPU(
     .i_Enable(i_Enable),
     .i_Read(), //CONTROL LINE. TODO!!
     .i_Write(), //CONTROL LINE. TODO!!
+    .i_nRst(i_nRst),
     .i_Data(bus_8bit_dst),
     .o_Reg_Data(alu_reg_data),
     
@@ -171,6 +175,7 @@ module CPU(
     ControlUnit cu
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Opcode(opcode),
     .i_Flags(flags),
     .i_Interrupts(i_Interrupts),

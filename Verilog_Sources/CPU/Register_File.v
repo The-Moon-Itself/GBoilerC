@@ -24,6 +24,7 @@
 module Register_File(
     input i_Clk, //Our system clock
     input i_Enable, //Used to disable the component when the system is not being ticked
+    input i_nRst, //Reset on low
     //8 Bit Register Codes:
     // W = 0, Z = 1
     // B = 2, C = 3
@@ -59,6 +60,7 @@ module Register_File(
     Register Reg_W
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[0] | i_Write16[0]),
     .i_Data(data_high8bits),
     .o_Data(w_data)
@@ -68,6 +70,7 @@ module Register_File(
     Register Reg_Z
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[1] | i_Write16[0]),
     .i_Data(data_low8bits),
     .o_Data(z_data)
@@ -77,6 +80,7 @@ module Register_File(
     Register Reg_B
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[2] | i_Write16[1]),
     .i_Data(data_high8bits),
     .o_Data(b_data)
@@ -86,6 +90,7 @@ module Register_File(
     Register Reg_C
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[3] | i_Write16[1]),
     .i_Data(data_low8bits),
     .o_Data(c_data)
@@ -95,6 +100,7 @@ module Register_File(
     Register Reg_D
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[4] | i_Write16[2]),
     .i_Data(data_high8bits),
     .o_Data(d_data)
@@ -104,6 +110,7 @@ module Register_File(
     Register Reg_E
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[5] | i_Write16[2]),
     .i_Data(data_low8bits),
     .o_Data(e_data)
@@ -113,6 +120,7 @@ module Register_File(
     Register Reg_H
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[6] | i_Write16[3]),
     .i_Data(data_high8bits),
     .o_Data(h_data)
@@ -122,6 +130,7 @@ module Register_File(
     Register Reg_L
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write8[7] | i_Write16[3]),
     .i_Data(data_low8bits),
     .o_Data(l_data)
@@ -149,6 +158,7 @@ module Register_File(
     Register #(.SIZE(16)) Reg_SP
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write16[4]),
     .i_Data(i_Bus16),
     .o_Data(sp_data)
@@ -159,6 +169,7 @@ module Register_File(
     Register #(.SIZE(16)) Reg_PC
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
     .i_Write(i_Write16[5]),
     .i_Data(i_Bus16),
     .o_Data(pc_data)

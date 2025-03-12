@@ -101,7 +101,7 @@ module CPU(
     .i_Parameter(bus_8bit_src),
     .i_Function_Control(), //CONTROL LINE. TODO!!
     .i_External_Flags(alu_flags_in),
-    .i_Save_Flags(), //CONTROL LINE. TODO!!
+    .i_Save_Flags(alu_save_flags), //CONTROL LINE. TODO!!
     .o_Result(alu_result),
     .o_Flags(flags)
     );

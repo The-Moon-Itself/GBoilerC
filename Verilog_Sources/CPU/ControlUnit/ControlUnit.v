@@ -66,6 +66,10 @@ module ControlUnit(
     // Bit 0: Active
     // Bit 1: Save Flags
     output [1:0] o_Add_r8_Control, //Adds the value on the 8bit bus to the 16bit bus as a signed byte
+    //Add16 Control:
+    // Bit 0: Active
+    // Bit 1: Save Flags
+    output [1:0] o_Add16_Control,
     //16Bus Selector:
     //  Bit 0: Low Byte
     //  Bit 1: High Byte
@@ -168,6 +172,7 @@ module ControlUnit(
     wire x0_Address_Out;
     wire [1:0] x0_Increment16;
     wire [1:0] x0_Add_r8_Control;
+    wire [1:0] x0_Add16_Control;
     wire [1:0] x0_Bus16_Byte_To_Bus;
     X0 x0
     (.i_Active(X[0]),
@@ -188,6 +193,7 @@ module ControlUnit(
     .o_Address_Out(x0_Address_Out),
     .o_Increment16(x0_Increment16),
     .o_Add_r8_Control(x0_Add_r8_Control),
+    .o_Add16_Control(x0_Add16_Control),
     .o_Bus16_Byte_To_Bus(x0_Bus16_Byte_To_Bus)
     );
     
@@ -204,6 +210,7 @@ module ControlUnit(
     
     assign o_Increment16 = fetch_increment16 | x0_Increment16;
     assign o_Add_r8_Control = x0_Add_r8_Control;
+    assign o_Add16_Control = x0_Add16_Control;
     assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus;
     
     assign end_opcode_fetch = x0_fetch;

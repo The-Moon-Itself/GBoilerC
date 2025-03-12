@@ -43,7 +43,9 @@ module Register_File(
     input [5:0] i_Read16, //Read a 16bit register SHOULD ONLY EVER BE ONE HOT
     input [5:0] i_Write16, //Write the value in i_Bus16_In to an 16bit register
     input [15:0] i_Bus16, //The value to be written to an 16bit register
-    output [15:0] o_Bus16 //The value being read from an 16bit register
+    output [15:0] o_Bus16, //The value being read from an 16bit register
+    
+    output [15:0] o_HL //For easy access to the 16bit adder
     );
     
     //8Bit Registers
@@ -124,6 +126,8 @@ module Register_File(
     .i_Data(data_low8bits),
     .o_Data(l_data)
     );
+    assign o_HL = {h_data, l_data};
+    
     
     assign o_Bus8 = ({8{i_Read8[0]}} & w_data) |
                     ({8{i_Read8[1]}} & z_data) |

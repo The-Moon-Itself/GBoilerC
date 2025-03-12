@@ -43,6 +43,7 @@ module X0(
     
     output [1:0] o_Increment16,
     output [1:0] o_Add_r8_Control,
+    output [1:0] o_Add16_Control,
     output [1:0] o_Bus16_Byte_To_Bus
     );
     
@@ -53,6 +54,7 @@ module X0(
     wire JRs8_Active = i_Z[0] & |i_Y[7:3] & i_Active;
     
     wire LDrpd16_Active = i_Z[1] & i_Q[0] & i_Active;
+    wire ADDHLrp_Active = i_Z[1] & i_Q[1] & i_Active;
     
     
     wire LDa16SP_IR_Fetch;
@@ -127,16 +129,31 @@ module X0(
     .o_Add_r8_Control(JRs8_Add_r8_Control)
     );
     
+    wire ADDHLrp_IR_Fetch;
+    wire [5:0] ADDHLrp_Read16;
+    wire [5:0] ADDHLrp_Write16;
+    wire [1:0] ADDHLrp_Add16_Control;
+    ADDHLrp_Microcode ADDHLrp
+    (.i_Active(ADDHLrp_Active),
+    .i_Cycle_Step(i_Cycle_Step),
+    .i_Cycle_Count(i_Cycle_Count),
+    .i_P(i_P),
+    .o_IR_Fetch(ADDHLrp_IR_Fetch),
+    .o_Read16(ADDHLrp_Read16),
+    .o_Write16(ADDHLrp_Write16),
+    .o_Add16_Control(ADDHLrp_Add16_Control)
+    );
     
-    assign o_Fetch = NOP_Active | LDa16SP_IR_Fetch | LDrpd16_IR_Fetch | JRs8_IR_Fetch;
+    assign o_Fetch = NOP_Active | LDa16SP_IR_Fetch | LDrpd16_IR_Fetch | JRs8_IR_Fetch | ADDHLrp_IR_Fetch;
     assign o_Read8 = JRs8_Read8;
     assign o_Write8 = LDa16SP_Write8 | LDrpd16_Write8 | JRs8_Write8;
-    assign o_Read16 = LDa16SP_Read16 | LDrpd16_Read16 | JRs8_Read16;
-    assign o_Write16 = LDa16SP_Write16 | LDrpd16_Write16 | JRs8_Write16;
+    assign o_Read16 = LDa16SP_Read16 | LDrpd16_Read16 | JRs8_Read16 | ADDHLrp_Read16;
+    assign o_Write16 = LDa16SP_Write16 | LDrpd16_Write16 | JRs8_Write16 | ADDHLrp_Write16;
     assign o_Bus_In = LDa16SP_Bus_In | LDrpd16_Bus_In | JRs8_Bus_In;
     assign o_Bus_Out = LDa16SP_Bus_Out;
     assign o_Address_Out = LDa16SP_Address_Out | LDrpd16_Address_Out | JRs8_Address_Out;
     assign o_Increment16 = LDa16SP_Increment16 | LDrpd16_Increment16 | JRs8_Increment16;
     assign o_Add_r8_Control = JRs8_Add_r8_Control;
+    assign o_Add16_Control = ADDHLrp_Add16_Control;
     assign o_Bus16_Byte_To_Bus = LDa16SP_Bus16_Byte_To_Bus;
 endmodule

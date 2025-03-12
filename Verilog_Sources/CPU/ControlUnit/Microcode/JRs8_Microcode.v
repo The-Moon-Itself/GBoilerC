@@ -41,7 +41,7 @@ module JRs8_Microcode(
     wire address_immediate = i_Cycle_Count[0] & i_Cycle_Step[1] & i_Active;
     wire read_immediate = i_Cycle_Count[1] & i_Cycle_Step[0] & i_Active;
     
-    wire condition_met = (i_Y & i_Conditions != 0) | i_Always;
+    wire condition_met = ((i_Y & i_Conditions) != 0) | i_Always;
     wire jump = i_Cycle_Count[1] & i_Cycle_Step[1] & condition_met & i_Active;
     
     assign o_Read8 = {7'b0000000, jump};

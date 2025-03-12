@@ -61,6 +61,8 @@ module CPU(
     wire [15:0] bus_16bit_src; //A bus to get paramters to functions
     wire [15:0] bus_16bit_dst; //A bus to get function outputs to destinations
     
+    wire [15:0] add16_HL;
+    
     //Register File
     wire [7:0] registers_out;
     wire [7:0] read8;
@@ -77,16 +79,13 @@ module CPU(
     .i_Read16(read16),
     .i_Write16(write16),
     .i_Bus16(bus_16bit_dst),
-    .o_Bus16(bus_16bit_src)
+    .o_Bus16(bus_16bit_src),
+    .o_HL(add16_HL)
     );
     
-    //Needed up here for ALU
-    // Bit 0: Enable Add r8
-    // Bit 1: Save Add r8 Flags
-    wire [1:0] add_r8_control; //CONTROL LINE. TODO!!
-    
     //8Bit Stuff
-    wire [3:0] add_r8_flags;
+    wire [3:0] alu_flags_in;
+    wire alu_save_flags;
     wire [7:0] alu_reg_data;
     wire [7:0] alu_result;
     wire [3:0] flags;
@@ -101,7 +100,7 @@ module CPU(
     .i_Opcode(opcode),
     .i_Parameter(bus_8bit_src),
     .i_Function_Control(), //CONTROL LINE. TODO!!
-    .i_External_Flags(add_r8_flags & {4{add_r8_control[1]}}),
+    .i_External_Flags(alu_flags_in),
     .i_Save_Flags(), //CONTROL LINE. TODO!!
     .o_Result(alu_result),
     .o_Flags(flags)
@@ -122,7 +121,12 @@ module CPU(
                           ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]);
     
     //16Bit Stuff
+    
+    // Bit 0: Enable Add r8
+    // Bit 1: Save Add r8 Flags
+    wire [1:0] add_r8_control; //CONTROL LINE. TODO!!
     wire [15:0] add_r8_result;
+    wire [3:0] add_r8_flags;
     Add16_r8 add_r8
     (.i_In16(bus_16bit_src),
     .i_r8(bus_8bit_src),
@@ -132,7 +136,7 @@ module CPU(
     
   	assign o_Address = bus_16bit_src;
     
-    wire [1:0] increment16; //CONTROL LINE. TODO!!
+    wire [1:0] increment16;
     wire [15:0] increment16_result;
     Incrementer_16bit inc16
     (.i_In(bus_16bit_src),
@@ -142,7 +146,27 @@ module CPU(
     .o_Carry()
     );
     
-    assign bus_16bit_dst = add_r8_control[0] ? add_r8_result : increment16_result;
+    // Bit 0: Enable Add r8
+    // Bit 1: Save Add r8 Flags
+    wire [1:0] add16_control; //CONTROL LINE. TODO!!
+    wire [15:0] add16_result;
+    wire [3:0] add16_flags;
+    Adder16 add16
+    (.i_A(add16_HL),
+    .i_B(bus_16bit_src),
+    .i_F(flags),
+    .o_Result(add16_result),
+    .o_F(add16_flags)
+    );
+    
+    assign bus_16bit_dst = add_r8_control[0] ? add_r8_result : (
+                           add16_control[0] ? add16_result :
+                           increment16_result);
+    
+    assign alu_flags_in = ({3{add_r8_control[1]}} & add_r8_flags) |
+                          ({3{add16_control[1]}} & add16_flags);
+                          
+    assign alu_save_flags = add_r8_control[1] | add16_control[1];
     
     ControlUnit cu
     (.i_Clk(i_Clk),
@@ -164,6 +188,7 @@ module CPU(
     
     .o_Increment16(increment16),
     .o_Add_r8_Control(add_r8_control),
+    .o_Add16_Control(add16_control),
     .o_Bus16_Byte_To_Bus(bus16_byte_to_bus)
     );
     

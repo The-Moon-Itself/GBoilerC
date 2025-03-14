@@ -71,8 +71,10 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDHLrp_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/ALU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Add16_r8.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Adder16.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Adder8.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/CU_Clock.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v
@@ -80,12 +82,16 @@ read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/Generics/Decoder.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Incrementer_16bit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Incrementer_8Bit.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrpd16_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Logic_Unit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Main_ALU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Misc_ALU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/NOP_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register_File.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X0.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/CPU.v
 }
 OPTRACE "Adding files" END { }

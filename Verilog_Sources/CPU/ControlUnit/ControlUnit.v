@@ -13,6 +13,7 @@
 // 
 // Dependencies: 
 //  CU_Clock.v
+//  X0.v
 //  Microcode/
 //      NOP_Microcode.v
 //  ../../Generics/
@@ -54,6 +55,12 @@ module ControlUnit(
     // PC = 5
     output [5:0] o_Read16, //Puts the specified 16bit register's data on the data bus
     output [5:0] o_Write16, //Writes the data bus to the specified 16bit register
+    //8 Bit ALU Register Codes:
+    // A = 0
+    // F = 1
+    output [1:0] o_ReadALU8,
+    output [1:0] o_WriteALU8,
+    output o_Move_Reg, //Moves read register directly to write register
     
     output o_Bus_Out, //On if we are currently writing memory
     output o_Bus_In, //On if we are currently reading memory
@@ -169,6 +176,9 @@ module ControlUnit(
     wire [7:0] x0_write8;
     wire [5:0] x0_read16;
     wire [5:0] x0_write16;
+    wire [1:0] x0_readALU8;
+    wire [1:0] x0_writeALU8;
+    wire x0_Move_Reg;
     wire x0_Bus_In;
     wire x0_Bus_Out;
     wire x0_Address_Out;
@@ -189,6 +199,9 @@ module ControlUnit(
     .o_Read8(x0_read8),
     .o_Write8(x0_write8),
     .o_Read16(x0_read16),
+    .o_ReadALU8(x0_readALU8),
+    .o_WriteALU8(x0_writeALU8),
+    .o_Move_Reg(x0_Move_Reg),
     .o_Write16(x0_write16),
     .o_Bus_In(x0_Bus_In),
     .o_Bus_Out(x0_Bus_Out),
@@ -205,6 +218,9 @@ module ControlUnit(
     assign o_Write8 = x0_write8;
     assign o_Read16 = fetch_read16 | x0_read16;
     assign o_Write16 = fetch_write16 | x0_write16;
+    assign o_ReadALU8 = x0_readALU8;
+    assign o_WriteALU8 = x0_writeALU8;
+    assign o_Move_Reg = x0_Move_Reg;
     
     assign o_Bus_In = IR_read_step | x0_Bus_In;
     assign o_Bus_Out = x0_Bus_Out;

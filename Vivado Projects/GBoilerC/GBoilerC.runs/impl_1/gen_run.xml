@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7s25csga324-1" LaunchTime="1740085963">
-  <File Type="ROUTE-PWR" Name="CPU_power_routed.rpt"/>
+<GenRun Id="impl_1" LaunchPart="xc7s25csga324-1" LaunchTime="1741819310">
   <File Type="PA-TCL" Name="CPU.tcl"/>
-  <File Type="ROUTE-PWR-SUM" Name="CPU_power_summary_routed.pb"/>
-  <File Type="OPT-RQA-PB" Name="CPU_rqa_opted.pb"/>
   <File Type="REPORTS-TCL" Name="CPU_reports.tcl"/>
   <File Type="INIT-TIMING" Name="CPU_timing_summary_init.rpt"/>
   <File Type="OPT-DCP" Name="CPU_opt.dcp"/>
@@ -11,6 +8,7 @@
   <File Type="OPT-METHODOLOGY-DRC" Name="CPU_methodology_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="CPU.hwdef"/>
   <File Type="OPT-TIMING" Name="CPU_timing_summary_opted.rpt"/>
+  <File Type="OPT-RQA-PB" Name="CPU_rqa_opted.pb"/>
   <File Type="PWROPT-DCP" Name="CPU_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="CPU_drc_pwropted.rpt"/>
   <File Type="PWROPT-TIMING" Name="CPU_timing_summary_pwropted.rpt"/>
@@ -22,16 +20,12 @@
   <File Type="PLACE-CTRL" Name="CPU_control_sets_placed.rpt"/>
   <File Type="PLACE-SIMILARITY" Name="CPU_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="CPU_incremental_reuse_pre_placed.rpt"/>
-  <File Type="BG-BIN" Name="CPU.bin"/>
   <File Type="PLACE-TIMING" Name="CPU_timing_summary_placed.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="CPU_power_routed.rpx"/>
   <File Type="PLACE-RQA-PB" Name="CPU_rqa_placed.pb"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="CPU_postplace_pwropt.dcp"/>
-  <File Type="BITSTR-MSK" Name="CPU.msk"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="CPU_timing_summary_postplace_pwropted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="CPU_physopt.dcp"/>
   <File Type="PHYSOPT-DRC" Name="CPU_drc_physopted.rpt"/>
-  <File Type="BITSTR-RBT" Name="CPU.rbt"/>
   <File Type="PHYSOPT-TIMING" Name="CPU_timing_summary_physopted.rpt"/>
   <File Type="ROUTE-ERROR-DCP" Name="CPU_routed_error.dcp"/>
   <File Type="ROUTE-DCP" Name="CPU_routed.dcp"/>
@@ -42,7 +36,9 @@
   <File Type="ROUTE-METHODOLOGY-DRC" Name="CPU_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="CPU_methodology_drc_routed.rpx"/>
   <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="CPU_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-RQS-PB" Name="CPU_rqs_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="CPU_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="CPU_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="CPU_power_routed.rpx"/>
   <File Type="ROUTE-STATUS" Name="CPU_route_status.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="CPU_route_status.pb"/>
   <File Type="ROUTE-TIMINGSUMMARY" Name="CPU_timing_summary_routed.rpt"/>
@@ -53,15 +49,19 @@
   <File Type="ROUTE-BUS-SKEW" Name="CPU_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="CPU_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="CPU_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="CPU_rqs_routed.pb"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="CPU_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="CPU_postroute_physopt_bb.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING" Name="CPU_timing_summary_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="CPU_timing_summary_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="CPU_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="CPU_bus_skew_postroute_physopted.rpt"/>
-  <File Type="BG-BIT" Name="CPU.bit"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="CPU_bus_skew_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="CPU_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="CPU.bit"/>
+  <File Type="BG-BIN" Name="CPU.bin"/>
+  <File Type="BITSTR-MSK" Name="CPU.msk"/>
+  <File Type="BITSTR-RBT" Name="CPU.rbt"/>
   <File Type="BITSTR-NKY" Name="CPU.nky"/>
   <File Type="BITSTR-BMM" Name="CPU_bd.bmm"/>
   <File Type="BITSTR-MMI" Name="CPU.mmi"/>
@@ -86,6 +86,13 @@
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/ADDHLrp_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ALUs/ALU.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -94,6 +101,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/Bit16/Add16_r8.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/Bit16/Adder16.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -149,6 +163,27 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/LDrpd16_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ALUs/Logic_Unit.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -185,6 +220,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/Register_File.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/X0.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

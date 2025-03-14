@@ -18,6 +18,7 @@
 //  Bit16/
 //      Incrementer_16Bit.V
 //      Add16_r8.v
+//      Adder16.v
 //  ControlUnit/
 //      ControlUnit.v
 //
@@ -87,6 +88,8 @@ module CPU(
     );
     
     //8Bit Stuff
+    wire [1:0] alu_read8;
+    wire [1:0] alu_write8;
     wire [3:0] alu_flags_in;
     wire alu_save_flags;
     wire [7:0] alu_reg_data;
@@ -95,8 +98,8 @@ module CPU(
     ALU alu
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
-    .i_Read(), //CONTROL LINE. TODO!!
-    .i_Write(), //CONTROL LINE. TODO!!
+    .i_Read(alu_read8),
+    .i_Write(alu_write8),
     .i_nRst(i_nRst),
     .i_Data(bus_8bit_dst),
     .o_Reg_Data(alu_reg_data),
@@ -105,7 +108,7 @@ module CPU(
     .i_Parameter(bus_8bit_src),
     .i_Function_Control(), //CONTROL LINE. TODO!!
     .i_External_Flags(alu_flags_in),
-    .i_Save_Flags(alu_save_flags), //CONTROL LINE. TODO!!
+    .i_Save_Flags(alu_save_flags),
     .o_Result(alu_result),
     .o_Flags(flags)
     );
@@ -117,18 +120,20 @@ module CPU(
    //   Bit 0: Low Byte
    //   Bit 1: High Byte
     wire [1:0] bus16_byte_to_bus;
+    wire move_reg; //Set bus_8bit_dst to bus_8bit_src
     assign bus_8bit_src = registers_out |
                           alu_reg_data;
     assign bus_8bit_dst = alu_result |
                           ({8{o_Bus_In}} & i_Bus) |
                           ({8{bus16_byte_to_bus[1]}} & bus_16bit_src[15:8]) |
-                          ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]);
+                          ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]) |
+                          ({8{move_reg}} & bus_8bit_src);
     
     //16Bit Stuff
     
     // Bit 0: Enable Add r8
     // Bit 1: Save Add r8 Flags
-    wire [1:0] add_r8_control; //CONTROL LINE. TODO!!
+    wire [1:0] add_r8_control;
     wire [15:0] add_r8_result;
     wire [3:0] add_r8_flags;
     Add16_r8 add_r8
@@ -152,7 +157,7 @@ module CPU(
     
     // Bit 0: Enable Add r8
     // Bit 1: Save Add r8 Flags
-    wire [1:0] add16_control; //CONTROL LINE. TODO!!
+    wire [1:0] add16_control;
     wire [15:0] add16_result;
     wire [3:0] add16_flags;
     Adder16 add16
@@ -186,6 +191,9 @@ module CPU(
     .o_Write8(write8),
     .o_Read16(read16),
     .o_Write16(write16),
+    .o_ReadALU8(alu_read8),
+    .o_WriteALU8(alu_write8),
+    .o_Move_Reg(move_reg),
     
     .o_Bus_Out(o_Bus_Out),
     .o_Bus_In(o_Bus_In),

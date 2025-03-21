@@ -278,6 +278,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/X2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../../Verilog_Sources/CPU/CPU.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>

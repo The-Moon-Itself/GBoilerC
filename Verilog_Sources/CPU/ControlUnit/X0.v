@@ -19,6 +19,8 @@
 //      ADDHLrp_Microcode.v
 //      LDRp3pA_Microcode.v
 //      INCDECrpp_Microcode.v
+//      LDryd8_Microcode.v
+//      MiscALU_Microcode.v
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:

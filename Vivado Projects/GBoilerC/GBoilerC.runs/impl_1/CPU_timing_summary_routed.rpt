@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Wed Mar 12 18:43:04 2025
+| Date         : Fri Mar 14 03:11:49 2025
 | Host         : MSI running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file CPU_timing_summary_routed.rpt -pb CPU_timing_summary_routed.pb -rpx CPU_timing_summary_routed.rpx -warn_on_violation
 | Design       : CPU
@@ -43,7 +43,7 @@ Timing Summary Report
 
 Rule       Severity          Description                  Violations  
 ---------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  111         
+TIMING-17  Critical Warning  Non-clocked sequential cell  119         
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -53,10 +53,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (111)
+1. checking no_clock (119)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (331)
+4. checking unconstrained_internal_endpoints (355)
 5. checking no_input_delay (10)
 6. checking no_output_delay (27)
 7. checking multiple_clock (0)
@@ -66,9 +66,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (111)
+1. checking no_clock (119)
 --------------------------
- There are 111 register/latch pins with no clock driven by root clock pin: i_Clk (HIGH)
+ There are 119 register/latch pins with no clock driven by root clock pin: i_Clk (HIGH)
 
 
 2. checking constant_clock (0)
@@ -81,9 +81,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (331)
+4. checking unconstrained_internal_endpoints (355)
 --------------------------------------------------
- There are 331 pins that are not constrained for maximum delay. (HIGH)
+ There are 355 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -142,7 +142,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  358          inf        0.000                      0                  358           NA           NA                      NA                    NA  
+        inf        0.000                      0                  382          inf        0.000                      0                  382           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -211,461 +211,461 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay           358 Endpoints
-Min Delay           358 Endpoints
+Max Delay           382 Endpoints
+Min Delay           382 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_W/o_Data_reg[6]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        16.952ns  (logic 2.484ns (14.653%)  route 14.468ns (85.347%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=7 LUT6=6)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.968    13.302    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X1Y23          LUT3 (Prop_lut3_I0_O)        0.152    13.454 r  registers/Reg_SP/o_Data[6]_i_5/O
-                         net (fo=1, routed)           0.667    14.121    registers/Reg_SP/o_Data[6]_i_5_n_0
-    SLICE_X0Y23          LUT5 (Prop_lut5_I1_O)        0.326    14.447 r  registers/Reg_SP/o_Data[6]_i_2/O
-                         net (fo=2, routed)           1.049    15.496    registers/Reg_SP/o_Data[6]_i_2_n_0
-    SLICE_X0Y23          LUT6 (Prop_lut6_I0_O)        0.124    15.620 r  registers/Reg_SP/o_Data[6]_i_1/O
-                         net (fo=4, routed)           1.332    16.952    registers/Reg_W/D[6]
-    SLICE_X5Y24          FDCE                                         r  registers/Reg_W/o_Data_reg[6]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_H/o_Data_reg[6]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        16.502ns  (logic 2.484ns (15.053%)  route 14.018ns (84.947%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=7 LUT6=6)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.968    13.302    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X1Y23          LUT3 (Prop_lut3_I0_O)        0.152    13.454 r  registers/Reg_SP/o_Data[6]_i_5/O
-                         net (fo=1, routed)           0.667    14.121    registers/Reg_SP/o_Data[6]_i_5_n_0
-    SLICE_X0Y23          LUT5 (Prop_lut5_I1_O)        0.326    14.447 r  registers/Reg_SP/o_Data[6]_i_2/O
-                         net (fo=2, routed)           1.049    15.496    registers/Reg_SP/o_Data[6]_i_2_n_0
-    SLICE_X0Y23          LUT6 (Prop_lut6_I0_O)        0.124    15.620 r  registers/Reg_SP/o_Data[6]_i_1/O
-                         net (fo=4, routed)           0.883    16.502    registers/Reg_H/D[6]
-    SLICE_X3Y24          FDCE                                         r  registers/Reg_H/o_Data_reg[6]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_D/o_Data_reg[6]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        16.433ns  (logic 2.484ns (15.116%)  route 13.949ns (84.884%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=7 LUT6=6)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.968    13.302    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X1Y23          LUT3 (Prop_lut3_I0_O)        0.152    13.454 r  registers/Reg_SP/o_Data[6]_i_5/O
-                         net (fo=1, routed)           0.667    14.121    registers/Reg_SP/o_Data[6]_i_5_n_0
-    SLICE_X0Y23          LUT5 (Prop_lut5_I1_O)        0.326    14.447 r  registers/Reg_SP/o_Data[6]_i_2/O
-                         net (fo=2, routed)           1.049    15.496    registers/Reg_SP/o_Data[6]_i_2_n_0
-    SLICE_X0Y23          LUT6 (Prop_lut6_I0_O)        0.124    15.620 r  registers/Reg_SP/o_Data[6]_i_1/O
-                         net (fo=4, routed)           0.813    16.433    registers/Reg_D/D[6]
-    SLICE_X2Y23          FDCE                                         r  registers/Reg_D/o_Data_reg[6]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_B/o_Data_reg[6]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        16.286ns  (logic 2.484ns (15.253%)  route 13.802ns (84.747%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=7 LUT6=6)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.968    13.302    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X1Y23          LUT3 (Prop_lut3_I0_O)        0.152    13.454 r  registers/Reg_SP/o_Data[6]_i_5/O
-                         net (fo=1, routed)           0.667    14.121    registers/Reg_SP/o_Data[6]_i_5_n_0
-    SLICE_X0Y23          LUT5 (Prop_lut5_I1_O)        0.326    14.447 r  registers/Reg_SP/o_Data[6]_i_2/O
-                         net (fo=2, routed)           1.049    15.496    registers/Reg_SP/o_Data[6]_i_2_n_0
-    SLICE_X0Y23          LUT6 (Prop_lut6_I0_O)        0.124    15.620 r  registers/Reg_SP/o_Data[6]_i_1/O
-                         net (fo=4, routed)           0.666    16.286    registers/Reg_B/D[6]
-    SLICE_X1Y24          FDCE                                         r  registers/Reg_B/o_Data_reg[6]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_SP/o_Data_reg[14]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        15.768ns  (logic 2.484ns (15.753%)  route 13.284ns (84.247%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT4=1 LUT5=7 LUT6=5)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.968    13.302    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X1Y23          LUT3 (Prop_lut3_I0_O)        0.152    13.454 r  registers/Reg_SP/o_Data[6]_i_5/O
-                         net (fo=1, routed)           0.667    14.121    registers/Reg_SP/o_Data[6]_i_5_n_0
-    SLICE_X0Y23          LUT5 (Prop_lut5_I1_O)        0.326    14.447 r  registers/Reg_SP/o_Data[6]_i_2/O
-                         net (fo=2, routed)           0.696    15.142    registers/Reg_SP/o_Data[6]_i_2_n_0
-    SLICE_X0Y23          LUT4 (Prop_lut4_I0_O)        0.124    15.266 r  registers/Reg_SP/o_Data[14]_i_1/O
-                         net (fo=2, routed)           0.502    15.768    registers/Reg_SP/o_Data_reg[6]_0[5]
-    SLICE_X2Y25          FDCE                                         r  registers/Reg_SP/o_Data_reg[14]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_PC/o_Data_reg[14]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        15.600ns  (logic 2.484ns (15.923%)  route 13.116ns (84.077%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT4=1 LUT5=7 LUT6=5)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.968    13.302    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X1Y23          LUT3 (Prop_lut3_I0_O)        0.152    13.454 r  registers/Reg_SP/o_Data[6]_i_5/O
-                         net (fo=1, routed)           0.667    14.121    registers/Reg_SP/o_Data[6]_i_5_n_0
-    SLICE_X0Y23          LUT5 (Prop_lut5_I1_O)        0.326    14.447 r  registers/Reg_SP/o_Data[6]_i_2/O
-                         net (fo=2, routed)           0.696    15.142    registers/Reg_SP/o_Data[6]_i_2_n_0
-    SLICE_X0Y23          LUT4 (Prop_lut4_I0_O)        0.124    15.266 r  registers/Reg_SP/o_Data[14]_i_1/O
-                         net (fo=2, routed)           0.334    15.600    registers/Reg_PC/D[14]
-    SLICE_X2Y24          FDCE                                         r  registers/Reg_PC/o_Data_reg[14]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_H/o_Data_reg[7]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        15.581ns  (logic 2.248ns (14.428%)  route 13.333ns (85.572%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=6 LUT6=7)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.990    13.324    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I3_O)        0.124    13.448 r  registers/Reg_SP/o_Data[15]_i_4/O
-                         net (fo=1, routed)           0.667    14.115    registers/Reg_SP/o_Data[15]_i_4_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I1_O)        0.124    14.239 r  registers/Reg_SP/o_Data[15]_i_2/O
-                         net (fo=3, routed)           0.444    14.684    registers/Reg_SP/o_Data_reg[6]_0[6]
-    SLICE_X4Y24          LUT3 (Prop_lut3_I0_O)        0.118    14.802 r  registers/Reg_SP/o_Data[7]_i_1/O
-                         net (fo=4, routed)           0.780    15.581    registers/Reg_H/D[7]
-    SLICE_X3Y21          FDCE                                         r  registers/Reg_H/o_Data_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_W/o_Data_reg[7]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        15.554ns  (logic 2.248ns (14.453%)  route 13.306ns (85.547%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=6 LUT6=7)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.990    13.324    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I3_O)        0.124    13.448 r  registers/Reg_SP/o_Data[15]_i_4/O
-                         net (fo=1, routed)           0.667    14.115    registers/Reg_SP/o_Data[15]_i_4_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I1_O)        0.124    14.239 r  registers/Reg_SP/o_Data[15]_i_2/O
-                         net (fo=3, routed)           0.444    14.684    registers/Reg_SP/o_Data_reg[6]_0[6]
-    SLICE_X4Y24          LUT3 (Prop_lut3_I0_O)        0.118    14.802 r  registers/Reg_SP/o_Data[7]_i_1/O
-                         net (fo=4, routed)           0.753    15.554    registers/Reg_W/D[7]
-    SLICE_X5Y24          FDCE                                         r  registers/Reg_W/o_Data_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            registers/Reg_D/o_Data_reg[7]/D
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        15.390ns  (logic 2.248ns (14.607%)  route 13.142ns (85.393%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=6 LUT6=7)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.990    13.324    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I3_O)        0.124    13.448 r  registers/Reg_SP/o_Data[15]_i_4/O
-                         net (fo=1, routed)           0.667    14.115    registers/Reg_SP/o_Data[15]_i_4_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I1_O)        0.124    14.239 r  registers/Reg_SP/o_Data[15]_i_2/O
-                         net (fo=3, routed)           0.444    14.684    registers/Reg_SP/o_Data_reg[6]_0[6]
-    SLICE_X4Y24          LUT3 (Prop_lut3_I0_O)        0.118    14.802 r  registers/Reg_SP/o_Data[7]_i_1/O
-                         net (fo=4, routed)           0.589    15.390    registers/Reg_D/D[7]
-    SLICE_X2Y23          FDCE                                         r  registers/Reg_D/o_Data_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/initialize_fetch_reg/C
-                            (rising edge-triggered cell FDPE)
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
   Destination:            registers/Reg_B/o_Data_reg[7]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        15.308ns  (logic 2.248ns (14.685%)  route 13.060ns (85.315%))
-  Logic Levels:           15  (FDPE=1 LUT3=1 LUT5=6 LUT6=7)
+  Data Path Delay:        15.938ns  (logic 2.928ns (18.372%)  route 13.010ns (81.628%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=7 LUT6=5)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          1.335     1.853    cu/cu_clock/initialize_fetch_reg
-    SLICE_X1Y20          LUT6 (Prop_lut6_I5_O)        0.124     1.977 f  cu/cu_clock/o_Bus_Out_OBUF_inst_i_4/O
-                         net (fo=13, routed)          1.096     3.072    instruction_register/disable_opcode_processing__0
-    SLICE_X2Y17          LUT6 (Prop_lut6_I3_O)        0.124     3.196 r  instruction_register/o_Bus_In_OBUF_inst_i_6/O
-                         net (fo=4, routed)           0.969     4.165    instruction_register/LDrpd16_Active__0
-    SLICE_X3Y18          LUT6 (Prop_lut6_I0_O)        0.124     4.289 r  instruction_register/o_Address_OBUF[15]_inst_i_12/O
-                         net (fo=3, routed)           0.833     5.122    instruction_register/o_Address_OBUF[15]_inst_i_12_n_0
-    SLICE_X3Y19          LUT6 (Prop_lut6_I2_O)        0.124     5.246 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
-                         net (fo=19, routed)          1.366     6.612    instruction_register/read16[0]
-    SLICE_X5Y20          LUT5 (Prop_lut5_I1_O)        0.124     6.736 r  instruction_register/o_Address_OBUF[2]_inst_i_1/O
-                         net (fo=8, routed)           0.840     7.576    registers/Reg_L/o_Data_reg[2]_1[2]
-    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124     7.700 r  registers/Reg_L/o_Data[3]_i_4/O
-                         net (fo=3, routed)           0.848     8.548    registers/Reg_L/o_Data[3]_i_4_n_0
-    SLICE_X4Y21          LUT5 (Prop_lut5_I1_O)        0.124     8.672 r  registers/Reg_L/o_Data[5]_i_4__0/O
-                         net (fo=3, routed)           0.820     9.492    registers/Reg_L/o_Data[5]_i_4__0_n_0
-    SLICE_X4Y22          LUT5 (Prop_lut5_I2_O)        0.124     9.616 r  registers/Reg_L/o_Data[8]_i_4/O
-                         net (fo=3, routed)           0.680    10.296    registers/Reg_SP/o_Data[9]_i_2_0
-    SLICE_X5Y22          LUT5 (Prop_lut5_I1_O)        0.124    10.420 r  registers/Reg_SP/o_Data[9]_i_4/O
-                         net (fo=3, routed)           0.685    11.105    registers/Reg_SP/o_Data[9]_i_4_n_0
-    SLICE_X2Y22          LUT5 (Prop_lut5_I2_O)        0.124    11.229 r  registers/Reg_SP/o_Data[3]_i_5/O
-                         net (fo=3, routed)           0.981    12.210    registers/Reg_SP/o_Data[3]_i_5_n_0
-    SLICE_X4Y24          LUT5 (Prop_lut5_I1_O)        0.124    12.334 r  registers/Reg_SP/o_Data[5]_i_5/O
-                         net (fo=5, routed)           0.990    13.324    registers/Reg_SP/o_Data[5]_i_5_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I3_O)        0.124    13.448 r  registers/Reg_SP/o_Data[15]_i_4/O
-                         net (fo=1, routed)           0.667    14.115    registers/Reg_SP/o_Data[15]_i_4_n_0
-    SLICE_X3Y24          LUT6 (Prop_lut6_I1_O)        0.124    14.239 r  registers/Reg_SP/o_Data[15]_i_2/O
-                         net (fo=3, routed)           0.444    14.684    registers/Reg_SP/o_Data_reg[6]_0[6]
-    SLICE_X4Y24          LUT3 (Prop_lut3_I0_O)        0.118    14.802 r  registers/Reg_SP/o_Data[7]_i_1/O
-                         net (fo=4, routed)           0.507    15.308    registers/Reg_B/D[7]
-    SLICE_X1Y24          FDCE                                         r  registers/Reg_B/o_Data_reg[7]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 f  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 f  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 f  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 f  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 f  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 f  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 f  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 f  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 f  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.067    12.844    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I3_O)        0.348    13.192 r  registers/Reg_SP/o_Data[15]_i_3/O
+                         net (fo=1, routed)           0.848    14.040    registers/Reg_SP/o_Data[15]_i_3_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I0_O)        0.124    14.164 r  registers/Reg_SP/o_Data[15]_i_2/O
+                         net (fo=3, routed)           0.679    14.843    registers/Reg_SP/o_Data_reg[6]_0[5]
+    SLICE_X5Y25          LUT3 (Prop_lut3_I0_O)        0.152    14.995 r  registers/Reg_SP/o_Data[7]_i_1/O
+                         net (fo=4, routed)           0.943    15.938    registers/Reg_B/D[7]
+    SLICE_X9Y24          FDCE                                         r  registers/Reg_B/o_Data_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_D/o_Data_reg[7]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.748ns  (logic 2.928ns (18.592%)  route 12.820ns (81.408%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=7 LUT6=5)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 f  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 f  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 f  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 f  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 f  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 f  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 f  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 f  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 f  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.067    12.844    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I3_O)        0.348    13.192 r  registers/Reg_SP/o_Data[15]_i_3/O
+                         net (fo=1, routed)           0.848    14.040    registers/Reg_SP/o_Data[15]_i_3_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I0_O)        0.124    14.164 r  registers/Reg_SP/o_Data[15]_i_2/O
+                         net (fo=3, routed)           0.679    14.843    registers/Reg_SP/o_Data_reg[6]_0[5]
+    SLICE_X5Y25          LUT3 (Prop_lut3_I0_O)        0.152    14.995 r  registers/Reg_SP/o_Data[7]_i_1/O
+                         net (fo=4, routed)           0.754    15.748    registers/Reg_D/D[7]
+    SLICE_X8Y24          FDCE                                         r  registers/Reg_D/o_Data_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_H/o_Data_reg[7]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.715ns  (logic 2.928ns (18.632%)  route 12.787ns (81.368%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=7 LUT6=5)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 f  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 f  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 f  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 f  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 f  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 f  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 f  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 f  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 f  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.067    12.844    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I3_O)        0.348    13.192 r  registers/Reg_SP/o_Data[15]_i_3/O
+                         net (fo=1, routed)           0.848    14.040    registers/Reg_SP/o_Data[15]_i_3_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I0_O)        0.124    14.164 r  registers/Reg_SP/o_Data[15]_i_2/O
+                         net (fo=3, routed)           0.679    14.843    registers/Reg_SP/o_Data_reg[6]_0[5]
+    SLICE_X5Y25          LUT3 (Prop_lut3_I0_O)        0.152    14.995 r  registers/Reg_SP/o_Data[7]_i_1/O
+                         net (fo=4, routed)           0.720    15.715    registers/Reg_H/D[7]
+    SLICE_X6Y24          FDCE                                         r  registers/Reg_H/o_Data_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_W/o_Data_reg[7]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.577ns  (logic 2.928ns (18.797%)  route 12.649ns (81.203%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=7 LUT6=5)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 f  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 f  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 f  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 f  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 f  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 f  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 f  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 f  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 f  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.067    12.844    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I3_O)        0.348    13.192 r  registers/Reg_SP/o_Data[15]_i_3/O
+                         net (fo=1, routed)           0.848    14.040    registers/Reg_SP/o_Data[15]_i_3_n_0
+    SLICE_X4Y25          LUT6 (Prop_lut6_I0_O)        0.124    14.164 r  registers/Reg_SP/o_Data[15]_i_2/O
+                         net (fo=3, routed)           0.679    14.843    registers/Reg_SP/o_Data_reg[6]_0[5]
+    SLICE_X5Y25          LUT3 (Prop_lut3_I0_O)        0.152    14.995 r  registers/Reg_SP/o_Data[7]_i_1/O
+                         net (fo=4, routed)           0.582    15.577    registers/Reg_W/D[7]
+    SLICE_X7Y24          FDCE                                         r  registers/Reg_W/o_Data_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_W/o_Data_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.513ns  (logic 3.130ns (20.176%)  route 12.383ns (79.824%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=8 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 r  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 r  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 r  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 r  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 r  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 r  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 r  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 r  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.101    12.877    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X7Y24          LUT3 (Prop_lut3_I0_O)        0.376    13.253 r  registers/Reg_SP/o_Data[6]_i_5/O
+                         net (fo=1, routed)           0.436    13.690    registers/Reg_SP/o_Data[6]_i_5_n_0
+    SLICE_X7Y24          LUT5 (Prop_lut5_I1_O)        0.326    14.016 r  registers/Reg_SP/o_Data[6]_i_2/O
+                         net (fo=2, routed)           0.274    14.290    registers/Reg_SP/o_Data[6]_i_2_n_0
+    SLICE_X7Y24          LUT6 (Prop_lut6_I0_O)        0.124    14.414 r  registers/Reg_SP/o_Data[6]_i_1/O
+                         net (fo=4, routed)           1.100    15.513    registers/Reg_W/D[6]
+    SLICE_X7Y24          FDCE                                         r  registers/Reg_W/o_Data_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_PC/o_Data_reg[14]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.186ns  (logic 3.130ns (20.611%)  route 12.056ns (79.389%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT4=1 LUT5=8 LUT6=3)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 r  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 r  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 r  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 r  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 r  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 r  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 r  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 r  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.101    12.877    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X7Y24          LUT3 (Prop_lut3_I0_O)        0.376    13.253 r  registers/Reg_SP/o_Data[6]_i_5/O
+                         net (fo=1, routed)           0.436    13.690    registers/Reg_SP/o_Data[6]_i_5_n_0
+    SLICE_X7Y24          LUT5 (Prop_lut5_I1_O)        0.326    14.016 r  registers/Reg_SP/o_Data[6]_i_2/O
+                         net (fo=2, routed)           0.678    14.694    registers/Reg_SP/o_Data[6]_i_2_n_0
+    SLICE_X7Y24          LUT4 (Prop_lut4_I0_O)        0.124    14.818 r  registers/Reg_SP/o_Data[14]_i_1/O
+                         net (fo=2, routed)           0.369    15.186    registers/Reg_PC/D[14]
+    SLICE_X7Y25          FDCE                                         r  registers/Reg_PC/o_Data_reg[14]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_SP/o_Data_reg[14]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.186ns  (logic 3.130ns (20.611%)  route 12.056ns (79.389%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT4=1 LUT5=8 LUT6=3)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 r  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 r  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 r  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 r  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 r  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 r  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 r  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 r  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.101    12.877    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X7Y24          LUT3 (Prop_lut3_I0_O)        0.376    13.253 r  registers/Reg_SP/o_Data[6]_i_5/O
+                         net (fo=1, routed)           0.436    13.690    registers/Reg_SP/o_Data[6]_i_5_n_0
+    SLICE_X7Y24          LUT5 (Prop_lut5_I1_O)        0.326    14.016 r  registers/Reg_SP/o_Data[6]_i_2/O
+                         net (fo=2, routed)           0.678    14.694    registers/Reg_SP/o_Data[6]_i_2_n_0
+    SLICE_X7Y24          LUT4 (Prop_lut4_I0_O)        0.124    14.818 r  registers/Reg_SP/o_Data[14]_i_1/O
+                         net (fo=2, routed)           0.369    15.186    registers/Reg_SP/o_Data_reg[6]_0[4]
+    SLICE_X6Y25          FDCE                                         r  registers/Reg_SP/o_Data_reg[14]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_H/o_Data_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.172ns  (logic 3.130ns (20.630%)  route 12.042ns (79.370%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=8 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 r  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 r  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 r  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 r  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 r  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 r  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 r  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 r  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.101    12.877    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X7Y24          LUT3 (Prop_lut3_I0_O)        0.376    13.253 r  registers/Reg_SP/o_Data[6]_i_5/O
+                         net (fo=1, routed)           0.436    13.690    registers/Reg_SP/o_Data[6]_i_5_n_0
+    SLICE_X7Y24          LUT5 (Prop_lut5_I1_O)        0.326    14.016 r  registers/Reg_SP/o_Data[6]_i_2/O
+                         net (fo=2, routed)           0.274    14.290    registers/Reg_SP/o_Data[6]_i_2_n_0
+    SLICE_X7Y24          LUT6 (Prop_lut6_I0_O)        0.124    14.414 r  registers/Reg_SP/o_Data[6]_i_1/O
+                         net (fo=4, routed)           0.758    15.172    registers/Reg_H/D[6]
+    SLICE_X6Y24          FDCE                                         r  registers/Reg_H/o_Data_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_B/o_Data_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.084ns  (logic 3.130ns (20.750%)  route 11.954ns (79.250%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=8 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 r  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 r  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 r  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 r  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 r  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 r  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 r  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 r  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.101    12.877    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X7Y24          LUT3 (Prop_lut3_I0_O)        0.376    13.253 r  registers/Reg_SP/o_Data[6]_i_5/O
+                         net (fo=1, routed)           0.436    13.690    registers/Reg_SP/o_Data[6]_i_5_n_0
+    SLICE_X7Y24          LUT5 (Prop_lut5_I1_O)        0.326    14.016 r  registers/Reg_SP/o_Data[6]_i_2/O
+                         net (fo=2, routed)           0.274    14.290    registers/Reg_SP/o_Data[6]_i_2_n_0
+    SLICE_X7Y24          LUT6 (Prop_lut6_I0_O)        0.124    14.414 r  registers/Reg_SP/o_Data[6]_i_1/O
+                         net (fo=4, routed)           0.671    15.084    registers/Reg_B/D[6]
+    SLICE_X9Y24          FDCE                                         r  registers/Reg_B/o_Data_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            registers/Reg_D/o_Data_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        15.084ns  (logic 3.130ns (20.750%)  route 11.954ns (79.250%))
+  Logic Levels:           15  (FDCE=1 LUT3=2 LUT5=8 LUT6=4)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          1.056     1.512    cu/cu_clock/i_In[2]
+    SLICE_X2Y18          LUT5 (Prop_lut5_I3_O)        0.148     1.660 f  cu/cu_clock/o_Bus_In_OBUF_inst_i_3/O
+                         net (fo=17, routed)          1.705     3.365    cu/cu_clock/o_Step_reg[0]_1
+    SLICE_X8Y19          LUT3 (Prop_lut3_I2_O)        0.328     3.693 r  cu/cu_clock/o_Bus_In_OBUF_inst_i_9/O
+                         net (fo=5, routed)           0.657     4.349    cu/cu_clock/o_Data_reg[5]_1
+    SLICE_X5Y19          LUT6 (Prop_lut6_I5_O)        0.124     4.473 r  cu/cu_clock/o_Address_OBUF[15]_inst_i_13/O
+                         net (fo=3, routed)           0.602     5.075    instruction_register/o_Data_reg[0]_0
+    SLICE_X6Y19          LUT6 (Prop_lut6_I3_O)        0.124     5.199 r  instruction_register/o_Address_OBUF[15]_inst_i_4/O
+                         net (fo=17, routed)          0.827     6.026    registers/Reg_C/read16[0]
+    SLICE_X9Y21          LUT5 (Prop_lut5_I1_O)        0.124     6.150 r  registers/Reg_C/o_Address_OBUF[0]_inst_i_1/O
+                         net (fo=9, routed)           1.096     7.245    registers/Reg_L/o_Address_OBUF[0]
+    SLICE_X7Y21          LUT6 (Prop_lut6_I2_O)        0.124     7.369 r  registers/Reg_L/o_Data[3]_i_5__0/O
+                         net (fo=3, routed)           0.643     8.012    registers/Reg_L/o_Data[3]_i_5__0_n_0
+    SLICE_X7Y22          LUT5 (Prop_lut5_I1_O)        0.150     8.162 r  registers/Reg_L/o_Data[5]_i_5__0/O
+                         net (fo=3, routed)           0.674     8.836    registers/Reg_L/o_Data[5]_i_5__0_n_0
+    SLICE_X10Y22         LUT5 (Prop_lut5_I2_O)        0.326     9.162 r  registers/Reg_L/o_Data[8]_i_4/O
+                         net (fo=3, routed)           0.676     9.838    registers/Reg_SP/o_Data[9]_i_2_0
+    SLICE_X10Y23         LUT5 (Prop_lut5_I1_O)        0.124     9.962 r  registers/Reg_SP/o_Data[9]_i_4/O
+                         net (fo=3, routed)           0.685    10.647    registers/Reg_SP/o_Data[9]_i_4_n_0
+    SLICE_X8Y23          LUT5 (Prop_lut5_I2_O)        0.124    10.771 r  registers/Reg_SP/o_Data[3]_i_5/O
+                         net (fo=3, routed)           0.854    11.625    registers/Reg_SP/o_Data[3]_i_5_n_0
+    SLICE_X8Y25          LUT5 (Prop_lut5_I1_O)        0.152    11.777 r  registers/Reg_SP/o_Data[5]_i_5/O
+                         net (fo=5, routed)           1.101    12.877    registers/Reg_SP/o_Data[5]_i_5_n_0
+    SLICE_X7Y24          LUT3 (Prop_lut3_I0_O)        0.376    13.253 r  registers/Reg_SP/o_Data[6]_i_5/O
+                         net (fo=1, routed)           0.436    13.690    registers/Reg_SP/o_Data[6]_i_5_n_0
+    SLICE_X7Y24          LUT5 (Prop_lut5_I1_O)        0.326    14.016 r  registers/Reg_SP/o_Data[6]_i_2/O
+                         net (fo=2, routed)           0.274    14.290    registers/Reg_SP/o_Data[6]_i_2_n_0
+    SLICE_X7Y24          LUT6 (Prop_lut6_I0_O)        0.124    14.414 r  registers/Reg_SP/o_Data[6]_i_1/O
+                         net (fo=4, routed)           0.671    15.084    registers/Reg_D/D[6]
+    SLICE_X8Y24          FDCE                                         r  registers/Reg_D/o_Data_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -675,22 +675,22 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 cu/cu_clock/o_Step_reg[2]/C
+  Source:                 cu/cu_clock/o_Step_reg[3]/C
                             (rising edge-triggered cell FDCE)
   Destination:            cu/cu_clock/o_Step_reg[4]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.345ns  (logic 0.186ns (53.867%)  route 0.159ns (46.133%))
+  Data Path Delay:        0.374ns  (logic 0.226ns (60.458%)  route 0.148ns (39.542%))
   Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X3Y17          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[2]/C
-    SLICE_X3Y17          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  cu/cu_clock/o_Step_reg[2]/Q
-                         net (fo=21, routed)          0.159     0.300    cu/cu_clock/Q[0]
-    SLICE_X3Y17          LUT6 (Prop_lut6_I3_O)        0.045     0.345 r  cu/cu_clock/o_Step[4]_i_1/O
-                         net (fo=1, routed)           0.000     0.345    cu/cu_clock/o_Step[4]_i_1_n_0
-    SLICE_X3Y17          FDCE                                         r  cu/cu_clock/o_Step_reg[4]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[3]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.128     0.128 r  cu/cu_clock/o_Step_reg[3]/Q
+                         net (fo=24, routed)          0.148     0.276    cu/cu_clock/o_Step_reg[3]_0[1]
+    SLICE_X3Y20          LUT6 (Prop_lut6_I4_O)        0.098     0.374 r  cu/cu_clock/o_Step[4]_i_1/O
+                         net (fo=1, routed)           0.000     0.374    cu/cu_clock/o_Step[4]_i_1_n_0
+    SLICE_X3Y20          FDCE                                         r  cu/cu_clock/o_Step_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -699,36 +699,17 @@ Slack:                    inf
   Destination:            alu/Reg_F/o_Data_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.371ns  (logic 0.186ns (50.162%)  route 0.185ns (49.838%))
+  Data Path Delay:        0.394ns  (logic 0.186ns (47.259%)  route 0.208ns (52.741%))
   Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y21          FDCE                         0.000     0.000 r  alu/Reg_F/o_Data_reg[0]/C
-    SLICE_X0Y21          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  alu/Reg_F/o_Data_reg[0]/Q
-                         net (fo=2, routed)           0.185     0.326    registers/Reg_SP/flags[0]
-    SLICE_X0Y21          LUT6 (Prop_lut6_I5_O)        0.045     0.371 r  registers/Reg_SP/o_Data[0]_i_1__2/O
-                         net (fo=1, routed)           0.000     0.371    alu/Reg_F/o_Data_reg[0]_0
-    SLICE_X0Y21          FDCE                                         r  alu/Reg_F/o_Data_reg[0]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 cu/cu_clock/o_Step_reg[0]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            cu/cu_clock/o_Step_reg[0]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.379ns  (logic 0.186ns (49.132%)  route 0.193ns (50.868%))
-  Logic Levels:           2  (FDCE=1 LUT1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X1Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[0]/C
-    SLICE_X1Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[0]/Q
-                         net (fo=26, routed)          0.193     0.334    cu/cu_clock/o_Step_reg_n_0_[0]
-    SLICE_X1Y20          LUT1 (Prop_lut1_I0_O)        0.045     0.379 r  cu/cu_clock/o_Step[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.379    cu/cu_clock/o_Step[0]_i_1_n_0
-    SLICE_X1Y20          FDCE                                         r  cu/cu_clock/o_Step_reg[0]/D
+    SLICE_X5Y24          FDCE                         0.000     0.000 r  alu/Reg_F/o_Data_reg[0]/C
+    SLICE_X5Y24          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  alu/Reg_F/o_Data_reg[0]/Q
+                         net (fo=2, routed)           0.208     0.349    registers/Reg_SP/flags[0]
+    SLICE_X5Y24          LUT6 (Prop_lut6_I5_O)        0.045     0.394 r  registers/Reg_SP/o_Data[0]_i_1__2/O
+                         net (fo=1, routed)           0.000     0.394    alu/Reg_F/o_Data_reg[0]_0
+    SLICE_X5Y24          FDCE                                         r  alu/Reg_F/o_Data_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -737,131 +718,150 @@ Slack:                    inf
   Destination:            cu/initialize_fetch_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.424ns  (logic 0.213ns (50.236%)  route 0.211ns (49.764%))
+  Data Path Delay:        0.414ns  (logic 0.183ns (44.180%)  route 0.231ns (55.820%))
   Logic Levels:           2  (FDPE=1 LUT5=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X2Y17          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
-    SLICE_X2Y17          FDPE (Prop_fdpe_C_Q)         0.164     0.164 r  cu/initialize_fetch_reg/Q
-                         net (fo=14, routed)          0.095     0.259    cu/cu_clock/initialize_fetch_reg
-    SLICE_X3Y17          LUT5 (Prop_lut5_I3_O)        0.049     0.308 r  cu/cu_clock/initialize_fetch_i_1/O
-                         net (fo=1, routed)           0.116     0.424    cu/cu_clock_n_34
-    SLICE_X2Y17          FDPE                                         r  cu/initialize_fetch_reg/D
+    SLICE_X4Y20          FDPE                         0.000     0.000 r  cu/initialize_fetch_reg/C
+    SLICE_X4Y20          FDPE (Prop_fdpe_C_Q)         0.141     0.141 r  cu/initialize_fetch_reg/Q
+                         net (fo=17, routed)          0.231     0.372    cu/cu_clock/initialize_fetch_reg_1
+    SLICE_X4Y20          LUT5 (Prop_lut5_I3_O)        0.042     0.414 r  cu/cu_clock/initialize_fetch_i_1/O
+                         net (fo=1, routed)           0.000     0.414    cu/cu_clock_n_65
+    SLICE_X4Y20          FDPE                                         r  cu/initialize_fetch_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 cu/cu_clock/o_Step_reg[2]/C
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            cu/cu_clock/o_Step_reg[3]/D
+  Destination:            instruction_register/o_Data_reg[4]/CE
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.439ns  (logic 0.184ns (41.882%)  route 0.255ns (58.119%))
-  Logic Levels:           2  (FDCE=1 LUT5=1)
+  Data Path Delay:        0.428ns  (logic 0.186ns (43.424%)  route 0.242ns (56.576%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X3Y17          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[2]/C
-    SLICE_X3Y17          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  cu/cu_clock/o_Step_reg[2]/Q
-                         net (fo=21, routed)          0.255     0.396    cu/cu_clock/Q[0]
-    SLICE_X3Y17          LUT5 (Prop_lut5_I3_O)        0.043     0.439 r  cu/cu_clock/o_Step[3]_i_1/O
-                         net (fo=1, routed)           0.000     0.439    cu/cu_clock/o_Step[3]_i_1_n_0
-    SLICE_X3Y17          FDCE                                         r  cu/cu_clock/o_Step_reg[3]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          0.175     0.316    cu/cu_clock/i_In[2]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I2_O)        0.045     0.361 r  cu/cu_clock/o_Data[7]_i_1__7/O
+                         net (fo=8, routed)           0.068     0.428    instruction_register/o_Data_reg[7]_0[0]
+    SLICE_X3Y19          FDCE                                         r  instruction_register/o_Data_reg[4]/CE
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 cu/cu_clock/o_Step_reg[2]/C
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            cu/cu_clock/o_Step_reg[2]/D
+  Destination:            instruction_register/o_Data_reg[5]/CE
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.441ns  (logic 0.186ns (42.145%)  route 0.255ns (57.855%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.428ns  (logic 0.186ns (43.424%)  route 0.242ns (56.576%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X3Y17          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[2]/C
-    SLICE_X3Y17          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  cu/cu_clock/o_Step_reg[2]/Q
-                         net (fo=21, routed)          0.255     0.396    cu/cu_clock/Q[0]
-    SLICE_X3Y17          LUT4 (Prop_lut4_I3_O)        0.045     0.441 r  cu/cu_clock/o_Step[2]_i_1/O
-                         net (fo=1, routed)           0.000     0.441    cu/cu_clock/o_Step[2]_i_1_n_0
-    SLICE_X3Y17          FDCE                                         r  cu/cu_clock/o_Step_reg[2]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          0.175     0.316    cu/cu_clock/i_In[2]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I2_O)        0.045     0.361 r  cu/cu_clock/o_Data[7]_i_1__7/O
+                         net (fo=8, routed)           0.068     0.428    instruction_register/o_Data_reg[7]_0[0]
+    SLICE_X3Y19          FDCE                                         r  instruction_register/o_Data_reg[5]/CE
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 cu/cu_clock/o_Step_reg[1]/C
+  Source:                 registers/Reg_L/o_Data_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            cu/cu_clock/o_Step_reg[1]/D
+  Destination:            registers/Reg_PC/o_Data_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.464ns  (logic 0.186ns (40.129%)  route 0.278ns (59.871%))
-  Logic Levels:           2  (FDCE=1 LUT2=1)
+  Data Path Delay:        0.458ns  (logic 0.186ns (40.637%)  route 0.272ns (59.363%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X3Y17          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[1]/C
-    SLICE_X3Y17          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  cu/cu_clock/o_Step_reg[1]/Q
-                         net (fo=25, routed)          0.278     0.419    cu/cu_clock/o_Step_reg_n_0_[1]
-    SLICE_X3Y17          LUT2 (Prop_lut2_I1_O)        0.045     0.464 r  cu/cu_clock/o_Step[1]_i_1/O
-                         net (fo=1, routed)           0.000     0.464    cu/cu_clock/o_Step[1]_i_1_n_0
-    SLICE_X3Y17          FDCE                                         r  cu/cu_clock/o_Step_reg[1]/D
+    SLICE_X9Y21          FDCE                         0.000     0.000 r  registers/Reg_L/o_Data_reg[0]/C
+    SLICE_X9Y21          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  registers/Reg_L/o_Data_reg[0]/Q
+                         net (fo=5, routed)           0.077     0.218    registers/Reg_L/Q[0]
+    SLICE_X8Y21          LUT6 (Prop_lut6_I0_O)        0.045     0.263 r  registers/Reg_L/o_Data[0]_i_1__1/O
+                         net (fo=3, routed)           0.194     0.458    registers/Reg_PC/D[0]
+    SLICE_X11Y21         FDCE                                         r  registers/Reg_PC/o_Data_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 registers/Reg_W/o_Data_reg[4]/C
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            registers/Reg_PC/o_Data_reg[4]/D
+  Destination:            instruction_register/o_Data_reg[0]/CE
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.523ns  (logic 0.186ns (35.548%)  route 0.337ns (64.452%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.481ns  (logic 0.186ns (38.653%)  route 0.295ns (61.347%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y24          FDCE                         0.000     0.000 r  registers/Reg_W/o_Data_reg[4]/C
-    SLICE_X5Y24          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  registers/Reg_W/o_Data_reg[4]/Q
-                         net (fo=4, routed)           0.152     0.293    registers/Reg_W/Q[4]
-    SLICE_X4Y22          LUT4 (Prop_lut4_I2_O)        0.045     0.338 r  registers/Reg_W/o_Data[4]_i_1__0/O
-                         net (fo=2, routed)           0.185     0.523    registers/Reg_PC/D[4]
-    SLICE_X2Y22          FDCE                                         r  registers/Reg_PC/o_Data_reg[4]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          0.175     0.316    cu/cu_clock/i_In[2]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I2_O)        0.045     0.361 r  cu/cu_clock/o_Data[7]_i_1__7/O
+                         net (fo=8, routed)           0.121     0.481    instruction_register/o_Data_reg[7]_0[0]
+    SLICE_X3Y18          FDCE                                         r  instruction_register/o_Data_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 registers/Reg_W/o_Data_reg[5]/C
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            registers/Reg_SP/o_Data_reg[5]/D
+  Destination:            instruction_register/o_Data_reg[1]/CE
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.531ns  (logic 0.183ns (34.455%)  route 0.348ns (65.545%))
-  Logic Levels:           2  (FDCE=1 LUT5=1)
+  Data Path Delay:        0.481ns  (logic 0.186ns (38.653%)  route 0.295ns (61.347%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y23          FDCE                         0.000     0.000 r  registers/Reg_W/o_Data_reg[5]/C
-    SLICE_X5Y23          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  registers/Reg_W/o_Data_reg[5]/Q
-                         net (fo=4, routed)           0.168     0.309    registers/Reg_W/Q[5]
-    SLICE_X5Y23          LUT5 (Prop_lut5_I2_O)        0.042     0.351 r  registers/Reg_W/o_Data[5]_i_1__0/O
-                         net (fo=3, routed)           0.180     0.531    registers/Reg_SP/o_Data_reg[8]_2[5]
-    SLICE_X7Y22          FDCE                                         r  registers/Reg_SP/o_Data_reg[5]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          0.175     0.316    cu/cu_clock/i_In[2]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I2_O)        0.045     0.361 r  cu/cu_clock/o_Data[7]_i_1__7/O
+                         net (fo=8, routed)           0.121     0.481    instruction_register/o_Data_reg[7]_0[0]
+    SLICE_X3Y18          FDCE                                         r  instruction_register/o_Data_reg[1]/CE
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 registers/Reg_W/o_Data_reg[4]/C
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            registers/Reg_SP/o_Data_reg[4]/D
+  Destination:            instruction_register/o_Data_reg[2]/CE
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.543ns  (logic 0.186ns (34.256%)  route 0.357ns (65.744%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.481ns  (logic 0.186ns (38.653%)  route 0.295ns (61.347%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y24          FDCE                         0.000     0.000 r  registers/Reg_W/o_Data_reg[4]/C
-    SLICE_X5Y24          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  registers/Reg_W/o_Data_reg[4]/Q
-                         net (fo=4, routed)           0.152     0.293    registers/Reg_W/Q[4]
-    SLICE_X4Y22          LUT4 (Prop_lut4_I2_O)        0.045     0.338 r  registers/Reg_W/o_Data[4]_i_1__0/O
-                         net (fo=2, routed)           0.205     0.543    registers/Reg_SP/o_Data_reg[8]_2[4]
-    SLICE_X3Y22          FDCE                                         r  registers/Reg_SP/o_Data_reg[4]/D
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          0.175     0.316    cu/cu_clock/i_In[2]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I2_O)        0.045     0.361 r  cu/cu_clock/o_Data[7]_i_1__7/O
+                         net (fo=8, routed)           0.121     0.481    instruction_register/o_Data_reg[7]_0[0]
+    SLICE_X3Y18          FDCE                                         r  instruction_register/o_Data_reg[2]/CE
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 cu/cu_clock/o_Step_reg[4]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            instruction_register/o_Data_reg[7]/CE
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.481ns  (logic 0.186ns (38.653%)  route 0.295ns (61.347%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y20          FDCE                         0.000     0.000 r  cu/cu_clock/o_Step_reg[4]/C
+    SLICE_X3Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  cu/cu_clock/o_Step_reg[4]/Q
+                         net (fo=21, routed)          0.175     0.316    cu/cu_clock/i_In[2]
+    SLICE_X2Y19          LUT6 (Prop_lut6_I2_O)        0.045     0.361 r  cu/cu_clock/o_Data[7]_i_1__7/O
+                         net (fo=8, routed)           0.121     0.481    instruction_register/o_Data_reg[7]_0[0]
+    SLICE_X3Y18          FDCE                                         r  instruction_register/o_Data_reg[7]/CE
   -------------------------------------------------------------------    -------------------
 
 

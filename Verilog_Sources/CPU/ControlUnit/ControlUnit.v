@@ -66,6 +66,18 @@ module ControlUnit(
     output o_Bus_In, //On if we are currently reading memory
     output o_Address_Out, //On if we are setting a target memory address
     
+    
+    //ALUn Control:
+    // bit 0 - Enable Main ALU
+    // bits 2:1 - Increment Unit
+    //      bit 1: Enable Increment Unit
+    //      bit 2: Decrement
+    // bit 4:3 - Logic Unit
+    //      bit 3: Enable Logic Unit
+    //      bit 4: Disable Z Flag
+    // bit 5 - Enable Misc ALU
+    // bit 6 - Save Flags
+    output [6:0] o_ALU_Control, //Control bits to select function
     //Incrementer Control:
     // Bit 0: Active
     // Bit 1: Decrement
@@ -109,6 +121,7 @@ module ControlUnit(
     .o_Out(cycle_count)
     );
     
+    reg halted = 1'b0;
     reg initialize_fetch = 1'b1;
     wire end_opcode_fetch; //Microcodes should set this to true when it is the last M Cycle in their operation (the HALT opcode is an exception)
     
@@ -118,7 +131,7 @@ module ControlUnit(
     wire [1:0] fetch_increment16;
     wire fetch_reset_cycle;
     NOP_Microcode fetch
-    (.i_Active(initialize_fetch | end_opcode_fetch),
+    (.i_Active((initialize_fetch | end_opcode_fetch) & ~halted),
     .i_Cycle_Step(cycle_step),
     .o_Read16(fetch_read16),
     .o_Write16(fetch_write16),
@@ -182,6 +195,7 @@ module ControlUnit(
     wire x0_Bus_In;
     wire x0_Bus_Out;
     wire x0_Address_Out;
+    wire [6:0] x0_ALU_Control;
     wire [1:0] x0_Increment16;
     wire [1:0] x0_Add_r8_Control;
     wire [1:0] x0_Add16_Control;
@@ -206,33 +220,65 @@ module ControlUnit(
     .o_Bus_In(x0_Bus_In),
     .o_Bus_Out(x0_Bus_Out),
     .o_Address_Out(x0_Address_Out),
+    .o_ALU_Control(x0_ALU_Control),
     .o_Increment16(x0_Increment16),
     .o_Add_r8_Control(x0_Add_r8_Control),
     .o_Add16_Control(x0_Add16_Control),
     .o_Bus16_Byte_To_Bus(x0_Bus16_Byte_To_Bus)
     );
     
+    wire x1_IR_Fetch;
+    wire [7:0] x1_Read8;
+    wire [7:0] x1_Write8;
+    wire [5:0] x1_Read16;
+    wire [1:0] x1_ReadALU8;
+    wire [1:0] x1_WriteALU8;
+    wire x1_Move_Reg;
+    wire x1_Bus_In;
+    wire x1_Bus_Out;
+    wire x1_Address_Out;
+    wire halt;
+    X1 x1
+    (.i_Active(X[1]),
+    .i_Cycle_Step(cycle_step),
+    .i_Cycle_Count(cycle_count),
+    .i_Y(Y),
+    .i_Z(Z),
+    .o_IR_Fetch(x1_IR_Fetch),
+    .o_Read8(x1_Read8),
+    .o_Write8(x1_Write8),
+    .o_Read16(x1_Read16),
+    .o_ReadALU8(x1_ReadALU8),
+    .o_WriteALU8(x1_WriteALU8),
+    .o_Move_Reg(x1_Move_Reg),
+    .o_Bus_In(x1_Bus_In),
+    .o_Bus_Out(x1_Bus_Out),
+    .o_Address_Out(x1_Address_Out),
+    .o_Halt(halt)
+    );
+    
     assign o_WriteIR = IR_read_step;
     
-    assign o_Read8 = x0_read8;
-    assign o_Write8 = x0_write8;
-    assign o_Read16 = fetch_read16 | x0_read16;
+    assign o_Read8 = x0_read8| x1_Read8;
+    assign o_Write8 = x0_write8 | x1_Write8;
+    assign o_Read16 = fetch_read16 | x0_read16 | x1_Read16;
     assign o_Write16 = fetch_write16 | x0_write16;
-    assign o_ReadALU8 = x0_readALU8;
-    assign o_WriteALU8 = x0_writeALU8;
-    assign o_Move_Reg = x0_Move_Reg;
+    assign o_ReadALU8 = x0_readALU8 | x1_ReadALU8;
+    assign o_WriteALU8 = x0_writeALU8 | x1_WriteALU8;
+    assign o_Move_Reg = x0_Move_Reg | x1_Move_Reg;
     
-    assign o_Bus_In = IR_read_step | x0_Bus_In;
-    assign o_Bus_Out = x0_Bus_Out;
-    assign o_Address_Out = fetch_address_out | x0_Address_Out;
+    assign o_Bus_In = IR_read_step | x0_Bus_In | x1_Bus_In;
+    assign o_Bus_Out = x0_Bus_Out | x1_Bus_Out;
+    assign o_Address_Out = fetch_address_out | x0_Address_Out | x1_Address_Out;
     
+    assign o_ALU_Control = x0_ALU_Control;
     assign o_Increment16 = fetch_increment16 | x0_Increment16;
     assign o_Add_r8_Control = x0_Add_r8_Control;
     assign o_Add16_Control = x0_Add16_Control;
     assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus;
     
-    assign end_opcode_fetch = x0_fetch;
-    assign reset_cycle = fetch_reset_cycle;
+    assign end_opcode_fetch = x0_fetch | x1_IR_Fetch;
+    assign reset_cycle = fetch_reset_cycle | (step[2] & halted);
     
     always @(posedge(i_Clk), negedge(i_nRst)) begin
         if(!i_nRst) begin
@@ -240,6 +286,17 @@ module ControlUnit(
         end
         else if(fetch_reset_cycle & i_Enable) begin
             initialize_fetch <= 0;
+        end
+        
+        if(!i_nRst) begin
+            halted <= 0;
+        end
+        else if(|i_Interrupts[4:0] & i_Enable) begin
+            halted <= 0;
+        end
+        else if(halt) begin
+            halted <= 1;
+            initialize_fetch <= 1;
         end
     end 
 endmodule

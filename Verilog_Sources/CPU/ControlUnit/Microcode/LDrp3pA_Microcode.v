@@ -44,9 +44,9 @@ module LDrp3pA_Microcode(
     wire writeA = bus_access & i_Q[1];
     
     assign o_IR_Fetch = i_Cycle_Count[1] & i_Active;
-    assign o_Read16 = {2'b00, i_P[3] | i_P[2], i_P[1:0], 1'b0} & {6{send_address}};
-    assign o_Write16 = {2'b00, (i_P[3] | i_P[2]) & send_address, 3'b000};
-    assign o_Increment16 = {i_P[3], i_P[3] | i_P[2]} & {2{send_address}};
+    assign o_Read16 = {2'b00, |i_P[3:2], i_P[1:0], 1'b0} & {6{send_address}};
+    assign o_Write16 = {2'b00, |i_P[3:2] & send_address, 3'b000};
+    assign o_Increment16 = {i_P[3], |i_P[3:2]} & {2{send_address}};
     assign o_Address_Out = send_address;
     
     assign o_ReadALU8 ={1'b0, readA};

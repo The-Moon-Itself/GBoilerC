@@ -26,12 +26,8 @@ module Register #(SIZE = 8, INITIAL = 0) (
     input i_nRst, //Reset on low
     input i_Write, //Write to output on next clock cycle
     input [SIZE-1:0] i_Data, //New data to use
-    output reg [SIZE-1:0] o_Data //Current saved data
+    output reg [SIZE-1:0] o_Data = INITIAL //Current saved data
     );
-    
-    initial begin
-        o_Data = INITIAL;
-    end
     
     always @(posedge i_Clk, negedge i_nRst) begin
         if(!i_nRst) begin

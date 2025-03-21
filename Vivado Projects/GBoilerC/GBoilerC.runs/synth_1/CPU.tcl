@@ -84,6 +84,7 @@ read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Incrementer_8Bit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrp3pA_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrpd16_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Logic_Unit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Main_ALU.v

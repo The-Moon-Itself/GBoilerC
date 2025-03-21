@@ -51,8 +51,9 @@ module ALU(
     //      bit 3: Enable Logic Unit
     //      bit 4: Disable Z Flag
     // bit 5 - Enable Misc ALU
+    // bit 6 - Save Flags
     // Enabling a unit will set o_Result and flag_bus to that unit's output.
-    input [5:0] i_Function_Control, //Control bits to select function
+    input [6:0] i_Function_Control, //Control bits to select function
     input [3:0] i_External_Flags, //New flags from external (16bit) functions. Should be 0 when not used.
     input i_Save_Flags, //Saves new flags from a function to the flags register
     output [7:0] o_Result, //Function output
@@ -84,7 +85,7 @@ module ALU(
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
-    .i_Write(i_Save_Flags | i_Write[1]),
+    .i_Write(i_Save_Flags | i_Write[1] | i_Function_Control[6]),
     .i_Data(F_new_data),
     .o_Data(flags)
     );
@@ -137,7 +138,7 @@ module ALU(
     Misc_ALU misc
     (.i_A(A_data),
     .i_F(flags),
-    .i_Opcode(i_Opcode[5:4]),
+    .i_Opcode(i_Opcode[4:3]),
     .o_A(misc_res),
     .o_F(misc_flags)
     );

@@ -90,6 +90,7 @@ module CPU(
     //8Bit Stuff
     wire [1:0] alu_read8;
     wire [1:0] alu_write8;
+    wire [6:0] alu_control;
     wire [3:0] alu_flags_in;
     wire alu_save_flags;
     wire [7:0] alu_reg_data;
@@ -106,7 +107,7 @@ module CPU(
     
     .i_Opcode(opcode),
     .i_Parameter(bus_8bit_src),
-    .i_Function_Control(), //CONTROL LINE. TODO!!
+    .i_Function_Control(alu_control),
     .i_External_Flags(alu_flags_in),
     .i_Save_Flags(alu_save_flags),
     .o_Result(alu_result),
@@ -174,7 +175,7 @@ module CPU(
     
     assign alu_flags_in = ({3{add_r8_control[1]}} & add_r8_flags) |
                           ({3{add16_control[1]}} & add16_flags);
-                          
+    
     assign alu_save_flags = add_r8_control[1] | add16_control[1];
     
     ControlUnit cu
@@ -199,6 +200,7 @@ module CPU(
     .o_Bus_In(o_Bus_In),
     .o_Address_Out(o_Address_Out),
     
+    .o_ALU_Control(alu_control),
     .o_Increment16(increment16),
     .o_Add_r8_Control(add_r8_control),
     .o_Add16_Control(add16_control),

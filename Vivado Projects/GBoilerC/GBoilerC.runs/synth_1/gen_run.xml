@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7s25csga324-1" LaunchTime="1741936183" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/CPU.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7s25csga324-1" LaunchTime="1742847385" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/CPU.dcp">
   <File Type="PA-TCL" Name="CPU.tcl"/>
   <File Type="REPORTS-TCL" Name="CPU_reports.tcl"/>
   <File Type="RDS-RDS" Name="CPU.vds"/>
@@ -74,6 +74,20 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/INCDECrpp_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/INCDECry_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/Bit16/Incrementer_16bit.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -116,6 +130,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/LDryd8_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ALUs/Logic_Unit.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -130,6 +151,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/MiscALU_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ALUs/Misc_ALU.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -138,6 +166,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/NOP_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -159,6 +194,27 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/X0.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/X1.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/X2.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/X3.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

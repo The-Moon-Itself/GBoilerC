@@ -16,6 +16,7 @@
 //  X0.v
 //  X1.v
 //  X2.v
+//  X3.v
 //  Microcode/
 //      NOP_Microcode.v
 //  ../../Generics/
@@ -284,27 +285,67 @@ module ControlUnit(
     .o_ALU_Control(x2_ALU_Control)
     );
     
+    wire x3_Fetch;
+    wire [7:0] x3_Read8; //DISCONNECTED
+    wire [7:0] x3_Write8;
+    wire [5:0] x3_Read16;
+    wire [5:0] x3_Write16;
+    wire [1:0] x3_ReadALU8; //DISCONNECTED
+    wire [1:0] x3_WriteALU8; //DISCONNECTED
+    wire x3_Move_Reg; //DISCONNECTED
+    wire x3_Bus_In;
+    wire x3_Bus_Out;
+    wire x3_Address_Out;
+    wire [1:0] x3_Increment16;
+    wire [1:0] x3_Bus16_Byte_To_Bus;
+    wire x3_EI;
+    X3 x3
+    (
+    .i_Active(X[3]),
+    .i_Cycle_Step(cycle_step),
+    .i_Cycle_Count(cycle_count),
+    .i_Y(Y),
+    .i_Z(Z),
+    .i_P(P),
+    .i_Q(Q),
+    .i_Conditions(conditions),
+    .o_Fetch(x3_Fetch),
+    .o_Read8(x3_Read8),
+    .o_Write8(x3_Write8),
+    .o_Read16(x3_Read16),
+    .o_Write16(x3_Write16),
+    .o_ReadALU8(x3_ReadALU8),
+    .o_WriteALU8(x3_WriteALU8),
+    .o_Move_Reg(x3_Move_Reg),
+    .o_Bus_In(x3_Bus_In),
+    .o_Bus_Out(x3_Bus_Out),
+    .o_Address_Out(x3_Address_Out),
+    .o_Increment16(x3_Increment16),
+    .o_Bus16_Byte_To_Bus(x3_Bus16_Byte_To_Bus),
+    .o_EI(x3_EI)
+    );
+    
     assign o_WriteIR = IR_read_step;
     
     assign o_Read8 = x0_read8| x1_Read8 | x2_Read8;
-    assign o_Write8 = x0_write8 | x1_Write8 | x2_Write8;
-    assign o_Read16 = fetch_read16 | x0_read16 | x1_Read16 | x2_Read16;
-    assign o_Write16 = fetch_write16 | x0_write16;
+    assign o_Write8 = x0_write8 | x1_Write8 | x2_Write8 | x3_Write8;
+    assign o_Read16 = fetch_read16 | x0_read16 | x1_Read16 | x2_Read16 | x3_Read16;
+    assign o_Write16 = fetch_write16 | x0_write16 | x3_Write16;
     assign o_ReadALU8 = x0_readALU8 | x1_ReadALU8 | x2_ReadALU8;
     assign o_WriteALU8 = x0_writeALU8 | x1_WriteALU8 | x2_WriteALU8;
     assign o_Move_Reg = x0_Move_Reg | x1_Move_Reg;
     
-    assign o_Bus_In = IR_read_step | x0_Bus_In | x1_Bus_In | x2_Bus_In;
-    assign o_Bus_Out = x0_Bus_Out | x1_Bus_Out;
-    assign o_Address_Out = fetch_address_out | x0_Address_Out | x1_Address_Out | x2_Address_Out;
+    assign o_Bus_In = IR_read_step | x0_Bus_In | x1_Bus_In | x2_Bus_In | x3_Bus_In;
+    assign o_Bus_Out = x0_Bus_Out | x1_Bus_Out | x3_Bus_Out;
+    assign o_Address_Out = fetch_address_out | x0_Address_Out | x1_Address_Out | x2_Address_Out | x3_Address_Out;
     
     assign o_ALU_Control = x0_ALU_Control | x2_ALU_Control;
-    assign o_Increment16 = fetch_increment16 | x0_Increment16;
+    assign o_Increment16 = fetch_increment16 | x0_Increment16 | x3_Increment16;
     assign o_Add_r8_Control = x0_Add_r8_Control;
     assign o_Add16_Control = x0_Add16_Control;
-    assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus;
+    assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus | x3_Bus16_Byte_To_Bus;
     
-    assign end_opcode_fetch = x0_fetch | x1_IR_Fetch | x2_IR_Fetch;
+    assign end_opcode_fetch = x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch;
     assign reset_cycle = fetch_reset_cycle | (step[2] & halted);
     
     always @(posedge(i_Clk), negedge(i_nRst)) begin

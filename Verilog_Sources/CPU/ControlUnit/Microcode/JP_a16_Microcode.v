@@ -37,10 +37,10 @@ module JP_a16_Microcode(
     );
     
     wire address_immediate = i_Cycle_Step[1] & |i_Cycle_Count[1:0] & i_Active;
-    wire immediate_data_in = {2{i_Cycle_Step[0] & i_Active}} & {i_Cycle_Count[0], i_Cycle_Step[1]};
+    wire [1:0] immediate_data_in = {2{i_Cycle_Step[0] & i_Active}} & {i_Cycle_Count[1], i_Cycle_Count[2]};
     
     wire condition_met = (|(i_Y & i_Conditions) | i_Always) & i_Active;
-    wire jump = i_Cycle_Step[1] & i_Cycle_Count[1] & condition_met;
+    wire jump = i_Cycle_Step[1] & i_Cycle_Count[2] & condition_met;
     
     assign o_IR_Fetch = (condition_met ? i_Cycle_Count[3] : i_Cycle_Count[2]) & i_Active;
     assign o_Write8 = {6'b000000, immediate_data_in};

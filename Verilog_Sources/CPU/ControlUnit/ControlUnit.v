@@ -19,6 +19,9 @@
 //  X3.v
 //  Microcode/
 //      NOP_Microcode.v
+//      CB_Microcode.v
+//      Interrupt_Address.v
+//      Interrupt_Microcode.v
 //  ../../Generics/
 //      Decoder.v
 // Revision:
@@ -96,7 +99,10 @@ module ControlUnit(
     //16Bus Selector:
     //  Bit 0: Low Byte
     //  Bit 1: High Byte
-    output [1:0] o_Bus16_Byte_To_Bus //Puts one of the bytes of the 16bit bus onto the 8bit bus. Good for SP and PC stuff
+    output [1:0] o_Bus16_Byte_To_Bus, //Puts one of the bytes of the 16bit bus onto the 8bit bus. Good for SP and PC stuff
+    output o_Bus8_To_Bus16, //Places the 8bit bus onto the 16bit bus with the high byte being 0xff
+    output [7:0] o_Bus_Value, //Puts a specific value on the 8bit data bus
+    output o_Bus_Value_Active //Enables the value on o_Bus_Value
     );
     
     wire reset_cycle;
@@ -146,7 +152,7 @@ module ControlUnit(
     //Opcode decoding
     
     //When we need to switch to other processes such as interrupts or setting the IR.
-    wire disable_opcode_processing = IR_read_step | initialize_fetch;
+    wire disable_opcode_processing;
     
     //Condition codes:
     // Bit 0: NZ (Not Zero)
@@ -164,25 +170,25 @@ module ControlUnit(
     wire [7:0] Y;
     Decoder #(.SIZE(8)) Y_decoder
     (.i_In(i_Opcode[5:3]),
-    .i_Disable(disable_opcode_processing),
+    .i_Disable(1'b0),
     .o_Out(Y)
     );
     wire [7:0] Z;
     Decoder #(.SIZE(8)) Z_decoder
     (.i_In(i_Opcode[2:0]),
-    .i_Disable(disable_opcode_processing),
+    .i_Disable(1'b0),
     .o_Out(Z)
     );
     wire [3:0] P;
     Decoder #(.SIZE(4)) P_decoder
     (.i_In(i_Opcode[5:4]),
-    .i_Disable(disable_opcode_processing),
+    .i_Disable(1'b0),
     .o_Out(P)
     );
     wire [1:0] Q;
     Decoder #(.SIZE(2)) Q_decoder
     (.i_In(i_Opcode[3]),
-    .i_Disable(disable_opcode_processing),
+    .i_Disable(1'b0),
     .o_Out(Q)
     );
     
@@ -286,19 +292,25 @@ module ControlUnit(
     );
     
     wire x3_Fetch;
-    wire [7:0] x3_Read8; //DISCONNECTED
+    wire x3_Reset_Cycle;
+    wire [7:0] x3_Read8;
     wire [7:0] x3_Write8;
     wire [5:0] x3_Read16;
     wire [5:0] x3_Write16;
-    wire [1:0] x3_ReadALU8; //DISCONNECTED
-    wire [1:0] x3_WriteALU8; //DISCONNECTED
-    wire x3_Move_Reg; //DISCONNECTED
+    wire [1:0] x3_ReadALU8;
+    wire [1:0] x3_WriteALU8;
+    wire x3_Move_Reg;
     wire x3_Bus_In;
     wire x3_Bus_Out;
     wire x3_Address_Out;
+    wire [6:0] x3_ALU_Control;
     wire [1:0] x3_Increment16;
+    wire [1:0] x3_Add_r8_Control;
     wire [1:0] x3_Bus16_Byte_To_Bus;
+    wire x3_Bus8_To_Bus16;
     wire x3_EI;
+    wire x3_DI;
+    wire CB_Prefix;
     X3 x3
     (
     .i_Active(X[3]),
@@ -310,6 +322,7 @@ module ControlUnit(
     .i_Q(Q),
     .i_Conditions(conditions),
     .o_Fetch(x3_Fetch),
+    .o_Reset_Cycle(x3_Reset_Cycle),
     .o_Read8(x3_Read8),
     .o_Write8(x3_Write8),
     .o_Read16(x3_Read16),
@@ -320,51 +333,164 @@ module ControlUnit(
     .o_Bus_In(x3_Bus_In),
     .o_Bus_Out(x3_Bus_Out),
     .o_Address_Out(x3_Address_Out),
+    .o_ALU_Control(x3_ALU_Control),
     .o_Increment16(x3_Increment16),
+    .o_Add_r8_Control(x3_Add_r8_Control),
     .o_Bus16_Byte_To_Bus(x3_Bus16_Byte_To_Bus),
-    .o_EI(x3_EI)
+    .o_Bus8_To_Bus16(x3_Bus8_To_Bus16),
+    .o_EI(x3_EI),
+    .o_DI(x3_DI),
+    .o_CB_Prefix(CB_Prefix)
     );
+    
+    reg IME = 1'b0;
+    reg handling_interrupt = 1'b0;
+    wire interrupt_requested = |i_Interrupts;
+    wire [2:0] interrupt_target_address;
+    Interrupt_Address interrupt_address
+    (.i_Interrupts(i_Interrupts),
+    .o_Interrupt_Address(interrupt_target_address)
+    );
+    
+    wire interrupt_IR_Fetch;
+    wire [7:0] interrupt_Write8;
+    wire [5:0] interrupt_Read16;
+    wire [5:0] interrupt_Write16;
+    wire interrupt_Bus_Out;
+    wire interrupt_Address_Out;
+    wire [1:0] interrupt_Increment16;
+    wire [1:0] interrupt_Bus16_Byte_To_Bus;
+    wire [7:0] interrupt_Bus_Value;
+    wire interrupt_Bus_Value_Active;
+    wire interrupt_DI;
+    Interrupt_Microcode interrupt_controller
+    (.i_Active(handling_interrupt),
+    .i_Cycle_Step(cycle_step),
+    .i_Cycle_Count(cycle_count),
+    .i_Interrupt_Address(interrupt_target_address),
+    .o_IR_Fetch(interrupt_IR_Fetch),
+    .o_Write8(interrupt_Write8),
+    .o_Read16(interrupt_Read16),
+    .o_Write16(interrupt_Write16),
+    .o_Bus_Out(interrupt_Bus_Out),
+    .o_Address_Out(interrupt_Address_Out),
+    .o_Increment16(interrupt_Increment16),
+    .o_Bus16_Byte_To_Bus(interrupt_Bus16_Byte_To_Bus),
+    .o_Bus_Value(interrupt_Bus_Value),
+    .o_Bus_Value_Active(interrupt_Bus_Value_Active),
+    .o_DI(interrupt_DI),
+    .o_Handle_Interrupt(o_Handle_Interrupt)
+    );
+    
+    reg CB_Enabled = 1'b0;
+    wire CB_Active = CB_Enabled & ~(halted | IR_read_step | initialize_fetch);
+    
+    wire CB_IR_Fetch;
+    wire Disable_CB;
+    wire [7:0] CB_Read8;
+    wire [7:0] CB_Write8;
+    wire [5:0] CB_Read16;
+    wire [1:0] CB_ReadALU8;
+    wire [1:0] CB_WriteALU8;
+    wire CB_Bus_In;
+    wire CB_Bus_Out;
+    wire CB_Address_Out;
+    wire [6:0] CB_ALU_Control;
+    CB_Microcode CB
+    (.i_Active(CB_Active),
+    .i_Cycle_Step(cycle_step),
+    .i_Cycle_Count(cycle_count),
+    .i_Z(Z),
+    .o_IR_Fetch(CB_IR_Fetch),
+    .o_Disable_CB(Disable_CB),
+    .o_Read8(CB_Read8),
+    .o_Write8(CB_Write8),
+    .o_Read16(CB_Read16),
+    .o_ReadALU8(CB_ReadALU8),
+    .o_WriteALU8(CB_WriteALU8),
+    .o_Bus_In(CB_Bus_In),
+    .o_Bus_Out(CB_Bus_Out),
+    .o_Address_Out(CB_Address_Out),
+    .o_ALU_Control(CB_ALU_Control)
+    );
+    
+    assign disable_opcode_processing = IR_read_step | initialize_fetch | halted | CB_Enabled;
     
     assign o_WriteIR = IR_read_step;
     
-    assign o_Read8 = x0_read8| x1_Read8 | x2_Read8;
-    assign o_Write8 = x0_write8 | x1_Write8 | x2_Write8 | x3_Write8;
-    assign o_Read16 = fetch_read16 | x0_read16 | x1_Read16 | x2_Read16 | x3_Read16;
-    assign o_Write16 = fetch_write16 | x0_write16 | x3_Write16;
-    assign o_ReadALU8 = x0_readALU8 | x1_ReadALU8 | x2_ReadALU8;
-    assign o_WriteALU8 = x0_writeALU8 | x1_WriteALU8 | x2_WriteALU8;
-    assign o_Move_Reg = x0_Move_Reg | x1_Move_Reg;
+    assign o_Read8 = x0_read8 | x1_Read8 | x2_Read8 | x3_Read8 | CB_Read8;
+    assign o_Write8 = x0_write8 | x1_Write8 | x2_Write8 | x3_Write8 | interrupt_Write8 | CB_Write8;
+    assign o_Read16 = fetch_read16 | x0_read16 | x1_Read16 | x2_Read16 | x3_Read16 | interrupt_Read16 | CB_Read16;
+    assign o_Write16 = fetch_write16 | x0_write16 | x3_Write16 | interrupt_Write16;
+    assign o_ReadALU8 = x0_readALU8 | x1_ReadALU8 | x2_ReadALU8 | x3_ReadALU8 | CB_ReadALU8;
+    assign o_WriteALU8 = x0_writeALU8 | x1_WriteALU8 | x2_WriteALU8 | x3_WriteALU8 | CB_WriteALU8;
+    assign o_Move_Reg = x0_Move_Reg | x1_Move_Reg | x3_Move_Reg;
     
-    assign o_Bus_In = IR_read_step | x0_Bus_In | x1_Bus_In | x2_Bus_In | x3_Bus_In;
-    assign o_Bus_Out = x0_Bus_Out | x1_Bus_Out | x3_Bus_Out;
-    assign o_Address_Out = fetch_address_out | x0_Address_Out | x1_Address_Out | x2_Address_Out | x3_Address_Out;
+    assign o_Bus_In = IR_read_step | x0_Bus_In | x1_Bus_In | x2_Bus_In | x3_Bus_In | CB_Bus_In;
+    assign o_Bus_Out = x0_Bus_Out | x1_Bus_Out | x3_Bus_Out | interrupt_Bus_Out | CB_Bus_Out;
+    assign o_Address_Out = fetch_address_out | x0_Address_Out | x1_Address_Out | x2_Address_Out | x3_Address_Out | interrupt_Address_Out | CB_Address_Out;
     
-    assign o_ALU_Control = x0_ALU_Control | x2_ALU_Control;
-    assign o_Increment16 = fetch_increment16 | x0_Increment16 | x3_Increment16;
-    assign o_Add_r8_Control = x0_Add_r8_Control;
+    assign o_ALU_Control = x0_ALU_Control | x2_ALU_Control | x3_ALU_Control | CB_ALU_Control;
+    assign o_Increment16 = fetch_increment16 | x0_Increment16 | x3_Increment16 | interrupt_Increment16;
+    assign o_Add_r8_Control = x0_Add_r8_Control | x3_Add_r8_Control;
     assign o_Add16_Control = x0_Add16_Control;
-    assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus | x3_Bus16_Byte_To_Bus;
+    assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus | x3_Bus16_Byte_To_Bus | interrupt_Bus16_Byte_To_Bus;
+    assign o_Bus8_To_Bus16 = x3_Bus8_To_Bus16;
+    assign o_Bus_Value = interrupt_Bus_Value;
+    assign o_Bus_Value_Active = interrupt_Bus_Value_Active;
     
-    assign end_opcode_fetch = x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch;
-    assign reset_cycle = fetch_reset_cycle | (step[2] & halted);
+    assign end_opcode_fetch = x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch | CB_IR_Fetch | interrupt_IR_Fetch;
+    assign reset_cycle = fetch_reset_cycle | (&step[1:0] & halted) | x3_Reset_Cycle;
     
     always @(posedge(i_Clk), negedge(i_nRst)) begin
         if(!i_nRst) begin
-            initialize_fetch <= 1;
+            initialize_fetch <= 1'b1;
+        end
+        else if(halt & i_Enable) begin
+            initialize_fetch <= 1'b1;
         end
         else if(fetch_reset_cycle & i_Enable) begin
-            initialize_fetch <= 0;
+            initialize_fetch <= 1'b0;
         end
         
         if(!i_nRst) begin
-            halted <= 0;
+            halted <= 1'b0;
         end
         else if(|i_Interrupts[4:0] & i_Enable) begin
-            halted <= 0;
+            halted <= 1'b0;
         end
-        else if(halt) begin
-            halted <= 1;
-            initialize_fetch <= 1;
+        else if(halt & i_Enable) begin
+            halted <= 1'b1;
+        end
+        
+        if(!i_nRst) begin
+            CB_Enabled <= 1'b0;
+        end
+        else if(Disable_CB & i_Enable) begin
+            CB_Enabled <= 1'b0;
+        end
+        else if(CB_Prefix & i_Enable) begin
+            CB_Enabled <= 1'b1;
+        end
+        
+        if(!i_nRst) begin
+            IME <= 1'b0;
+        end
+        else if ((x3_DI | interrupt_DI) & i_Enable) begin
+            IME <= 1'b0;
+        end
+        else if(x3_EI & i_Enable) begin
+            IME <= 1'b1;
+        end
+        
+        if(!i_nRst) begin
+            handling_interrupt <= 1'b0;
+        end
+        else if(IME & IR_read_step & interrupt_requested & i_Enable) begin
+            handling_interrupt <= 1'b1;
+        end
+        else if(reset_cycle & ~CB_Enabled & i_Enable) begin
+            handling_interrupt <= 1'b0;
         end
     end 
 endmodule

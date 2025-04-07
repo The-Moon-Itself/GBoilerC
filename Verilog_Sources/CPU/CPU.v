@@ -122,13 +122,16 @@ module CPU(
    //   Bit 1: High Byte
     wire [1:0] bus16_byte_to_bus;
     wire move_reg; //Set bus_8bit_dst to bus_8bit_src
+    wire [7:0] cu_bus; //A value set directly by the Control Unit
+    wire cu_bus_active; //Sets the bus to cu_bus
     assign bus_8bit_src = registers_out |
                           alu_reg_data;
     assign bus_8bit_dst = alu_result |
                           ({8{o_Bus_In}} & i_Bus) |
                           ({8{bus16_byte_to_bus[1]}} & bus_16bit_src[15:8]) |
                           ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]) |
-                          ({8{move_reg}} & bus_8bit_src);
+                          ({8{move_reg}} & bus_8bit_src) |
+                          ({8{cu_bus_active}} & cu_bus);
     
     //16Bit Stuff
     
@@ -144,7 +147,9 @@ module CPU(
     .o_Flags(add_r8_flags)
     );
     
-  	assign o_Address = bus_16bit_src;
+    wire bus8_to_bus16;
+  	assign o_Address = bus_16bit_src |
+  	                   {{8{bus8_to_bus16}}, ({8{bus8_to_bus16}} & bus_8bit_src)};
     
     wire [1:0] increment16;
     wire [15:0] increment16_result;
@@ -204,7 +209,10 @@ module CPU(
     .o_Increment16(increment16),
     .o_Add_r8_Control(add_r8_control),
     .o_Add16_Control(add16_control),
-    .o_Bus16_Byte_To_Bus(bus16_byte_to_bus)
+    .o_Bus16_Byte_To_Bus(bus16_byte_to_bus),
+    .o_Bus8_To_Bus16(bus8_to_bus16),
+    .o_Bus_Value(cu_bus),
+    .o_Bus_Value_Active(cu_bus_active)
     );
     
 endmodule

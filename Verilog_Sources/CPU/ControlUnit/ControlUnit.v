@@ -308,6 +308,8 @@ module ControlUnit(
     wire [1:0] x3_Add_r8_Control;
     wire [1:0] x3_Bus16_Byte_To_Bus;
     wire x3_Bus8_To_Bus16;
+    wire [7:0] x3_Bus_Value;
+    wire x3_Bus_Value_Active;
     wire x3_EI;
     wire x3_DI;
     wire CB_Prefix;
@@ -316,6 +318,7 @@ module ControlUnit(
     .i_Active(X[3]),
     .i_Cycle_Step(cycle_step),
     .i_Cycle_Count(cycle_count),
+    .i_Opcode(i_Opcode),
     .i_Y(Y),
     .i_Z(Z),
     .i_P(P),
@@ -338,6 +341,8 @@ module ControlUnit(
     .o_Add_r8_Control(x3_Add_r8_Control),
     .o_Bus16_Byte_To_Bus(x3_Bus16_Byte_To_Bus),
     .o_Bus8_To_Bus16(x3_Bus8_To_Bus16),
+    .o_Bus_Value(x3_Bus_Value),
+    .o_Bus_Value_Active(x3_Bus_Value_Active),
     .o_EI(x3_EI),
     .o_DI(x3_DI),
     .o_CB_Prefix(CB_Prefix)
@@ -436,8 +441,8 @@ module ControlUnit(
     assign o_Add16_Control = x0_Add16_Control;
     assign o_Bus16_Byte_To_Bus = x0_Bus16_Byte_To_Bus | x3_Bus16_Byte_To_Bus | interrupt_Bus16_Byte_To_Bus;
     assign o_Bus8_To_Bus16 = x3_Bus8_To_Bus16;
-    assign o_Bus_Value = interrupt_Bus_Value;
-    assign o_Bus_Value_Active = interrupt_Bus_Value_Active;
+    assign o_Bus_Value = interrupt_Bus_Value | x3_Bus_Value;
+    assign o_Bus_Value_Active = interrupt_Bus_Value_Active | x3_Bus_Value_Active;
     
     assign end_opcode_fetch = x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch | CB_IR_Fetch | interrupt_IR_Fetch;
     assign reset_cycle = fetch_reset_cycle | (&step[1:0] & halted) | x3_Reset_Cycle;

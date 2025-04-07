@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Mon Mar 24 16:16:32 2025
-# Process ID         : 20200
+# Start of session at: Mon Apr  7 02:48:06 2025
+# Process ID         : 3648
 # Current directory  : C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.runs/synth_1
 # Command line       : vivado.exe -log CPU.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source CPU.tcl
 # Log file           : C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.runs/synth_1/CPU.vds
@@ -17,11 +17,12 @@
 # CPU Physical cores : 10
 # CPU Logical cores  : 16
 # Host memory        : 16868 MB
-# Swap memory        : 13958 MB
-# Total Virtual      : 30827 MB
-# Available Virtual  : 14894 MB
+# Swap memory        : 16642 MB
+# Total Virtual      : 33511 MB
+# Available Virtual  : 16083 MB
 #-----------------------------------------------------------
 source CPU.tcl -notrace
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 367.227 ; gain = 64.352
 Command: read_checkpoint -auto_incremental -incremental {C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.srcs/utils_1/imports/synth_1/CPU.dcp}
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.srcs/utils_1/imports/synth_1/CPU.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -33,9 +34,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 20396
+INFO: [Synth 8-7075] Helper process launched with PID 22120
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 849.164 ; gain = 474.320
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 849.188 ; gain = 471.809
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'CPU' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/CPU.v:32]
 INFO: [Synth 8-6157] synthesizing module 'Register' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register.v:23]
@@ -68,7 +69,7 @@ INFO: [Synth 8-6157] synthesizing module 'Incrementer_16bit' [C:/GitRepos/GBoile
 INFO: [Synth 8-6155] done synthesizing module 'Incrementer_16bit' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Incrementer_16bit.v:23]
 INFO: [Synth 8-6157] synthesizing module 'Adder16' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Adder16.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'Adder16' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Adder16.v:23]
-INFO: [Synth 8-6157] synthesizing module 'ControlUnit' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v:30]
+INFO: [Synth 8-6157] synthesizing module 'ControlUnit' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v:34]
 INFO: [Synth 8-6157] synthesizing module 'CU_Clock' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/CU_Clock.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'CU_Clock' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/CU_Clock.v:23]
 INFO: [Synth 8-6157] synthesizing module 'Decoder' [C:/GitRepos/GBoilerC/Verilog_Sources/Generics/Decoder.v:23]
@@ -106,51 +107,113 @@ INFO: [Synth 8-6157] synthesizing module 'X1' [C:/GitRepos/GBoilerC/Verilog_Sour
 INFO: [Synth 8-6155] done synthesizing module 'X1' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X1.v:23]
 INFO: [Synth 8-6157] synthesizing module 'X2' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X2.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'X2' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X2.v:23]
-INFO: [Synth 8-6157] synthesizing module 'X3' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:23]
+INFO: [Synth 8-6157] synthesizing module 'X3' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:34]
 INFO: [Synth 8-6157] synthesizing module 'RET_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'RET_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'X3' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'ControlUnit' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v:30]
+INFO: [Synth 8-6157] synthesizing module 'LDca8A_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDca8A_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'LDca8A_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDca8A_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ADDSPs8_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDSPs8_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ADDSPs8_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDSPs8_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'POP_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/POP_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'POP_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/POP_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'LDPCSP_HL_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDPCSP_HL_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'LDPCSP_HL_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDPCSP_HL_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'JP_a16_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JP_a16_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'JP_a16_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JP_a16_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'LDa16A_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16A_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'LDa16A_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16A_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'CALL_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'CALL_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'PUSH_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/PUSH_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'PUSH_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/PUSH_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ALU_d8_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ALU_d8_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ALU_d8_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ALU_d8_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'X3' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:34]
+INFO: [Synth 8-6157] synthesizing module 'Interrupt_Address' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Interrupt_Address.v:25]
+INFO: [Synth 8-6157] synthesizing module 'LowestSetBit' [C:/GitRepos/GBoilerC/Verilog_Sources/Generics/LowestSetBit.v:23]
+	Parameter SIZE bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'LowestSetBit' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/Generics/LowestSetBit.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Interrupt_Address' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Interrupt_Address.v:25]
+INFO: [Synth 8-6157] synthesizing module 'Interrupt_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/Interrupt_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Interrupt_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/Interrupt_Microcode.v:23]
+INFO: [Synth 8-6157] synthesizing module 'CB_Microcode' [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'CB_Microcode' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ControlUnit' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v:34]
 INFO: [Synth 8-6155] done synthesizing module 'CPU' (0#1) [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/CPU.v:32]
-WARNING: [Synth 8-3848] Net o_Read8 in module/entity X3 does not have driver. [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:34]
-WARNING: [Synth 8-3848] Net o_ReadALU8 in module/entity X3 does not have driver. [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:38]
-WARNING: [Synth 8-3848] Net o_WriteALU8 in module/entity X3 does not have driver. [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:39]
-WARNING: [Synth 8-3848] Net o_Move_Reg in module/entity X3 does not have driver. [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:40]
-WARNING: [Synth 8-3848] Net o_Bus_Out in module/entity X3 does not have driver. [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v:43]
-WARNING: [Synth 8-7137] Register initialize_fetch_reg in module ControlUnit has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v:136]
-WARNING: [Synth 8-3848] Net o_Handle_Interrupt in module/entity ControlUnit does not have driver. [C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v:40]
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module CB_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module CB_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module CB_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module CB_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module CB_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module Interrupt_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module Interrupt_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module Interrupt_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module Interrupt_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module Interrupt_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[2] in module ALU_d8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module PUSH_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module PUSH_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module PUSH_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module PUSH_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module PUSH_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module CALL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module CALL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module CALL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module CALL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Always in module CALL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module LDa16A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module LDa16A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module LDa16A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module LDa16A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module LDa16A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module LDa16A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module JP_a16_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module JP_a16_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module JP_a16_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module JP_a16_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module JP_a16_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module JP_a16_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[0] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[2] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[0] in module LDPCSP_HL_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module POP_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module ADDSPs8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module ADDSPs8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module ADDSPs8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module ADDSPs8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module ADDSPs8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module ADDSPs8_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module LDca8A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module LDca8A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module LDca8A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module LDca8A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module LDca8A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module LDca8A_Microcode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module LDca8A_Microcode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module RET_Microcode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module RET_Microcode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module RET_Microcode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module RET_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[7] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[6] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[5] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[4] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[3] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[2] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[1] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Read8[0] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_ReadALU8[1] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_ReadALU8[0] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_WriteALU8[1] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_WriteALU8[0] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Move_Reg in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port o_Bus_Out in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Y[7] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Y[6] in module X3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Y[5] in module X3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Y[4] in module X3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Z[7] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Z[6] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Z[5] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Z[4] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Z[3] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Z[2] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[3] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[2] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Q[1] in module X3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Q[0] in module X3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module X2 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module X2 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module X2 is either unconnected or has no load
@@ -177,54 +240,12 @@ WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module LDryd8_Microcode is eith
 WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module LDryd8_Microcode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module INCDECry_Microcode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module INCDECry_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module INCDECry_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module INCDECry_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module INCDECry_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module INCDECry_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[0] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[2] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Q[0] in module INCDECrpp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[2] in module LDrp3pA_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[0] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[2] in module ADDHLrp_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[2] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[4] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[3] in module JRs8_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Step[3] in module LDrpd16_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[7] in module LDrpd16_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[6] in module LDrpd16_Microcode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_Cycle_Count[5] in module LDrpd16_Microcode is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 963.395 ; gain = 588.551
+Finished Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 969.234 ; gain = 591.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 963.395 ; gain = 588.551
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 969.234 ; gain = 591.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -232,10 +253,10 @@ Start Loading Part and Timing Information
 Loading part: xc7s25csga324-1
 INFO: [Device 21-403] Loading part xc7s25csga324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 963.395 ; gain = 588.551
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 969.234 ; gain = 591.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 963.395 ; gain = 588.551
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 969.234 ; gain = 591.855
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -246,24 +267,25 @@ Detailed RTL Component Info :
 	   2 Input   17 Bit       Adders := 1     
 	   3 Input    8 Bit       Adders := 1     
 	   3 Input    5 Bit       Adders := 8     
-	   2 Input    5 Bit       Adders := 3     
+	   2 Input    5 Bit       Adders := 4     
 	   3 Input    4 Bit       Adders := 2     
 +---XORs : 
 	   2 Input      8 Bit         XORs := 5     
+	   2 Input      5 Bit         XORs := 1     
 	   2 Input      1 Bit         XORs := 6     
 +---Registers : 
 	               16 Bit    Registers := 2     
 	                8 Bit    Registers := 10    
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
 +---Muxes : 
 	   2 Input   16 Bit        Muxes := 2     
 	   2 Input    8 Bit        Muxes := 14    
 	   2 Input    5 Bit        Muxes := 1     
 	   2 Input    4 Bit        Muxes := 8     
 	   2 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 15    
+	   2 Input    1 Bit        Muxes := 20    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -282,20 +304,20 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:01:23 . Memory (MB): peak = 1213.520 ; gain = 838.676
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:01:15 . Memory (MB): peak = 1224.512 ; gain = 847.133
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:01:23 . Memory (MB): peak = 1214.387 ; gain = 839.543
+Finished Timing Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:01:15 . Memory (MB): peak = 1233.367 ; gain = 855.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:01:24 . Memory (MB): peak = 1214.387 ; gain = 839.543
+Finished Technology Mapping : Time (s): cpu = 00:00:49 ; elapsed = 00:01:16 . Memory (MB): peak = 1233.367 ; gain = 855.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -313,37 +335,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished IO Insertion : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -362,66 +384,65 @@ Report Cell Usage:
 |1     |BUFG   |     1|
 |2     |CARRY4 |     6|
 |3     |LUT1   |     2|
-|4     |LUT2   |    58|
-|5     |LUT3   |    52|
-|6     |LUT4   |   111|
-|7     |LUT5   |    81|
-|8     |LUT6   |   225|
-|9     |FDCE   |   122|
+|4     |LUT2   |    72|
+|5     |LUT3   |    73|
+|6     |LUT4   |    73|
+|7     |LUT5   |   179|
+|8     |LUT6   |   266|
+|9     |FDCE   |   125|
 |10    |FDPE   |     1|
 |11    |IBUF   |    16|
-|12    |OBUF   |    27|
-|13    |OBUFT  |     1|
+|12    |OBUF   |    28|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+-----------------------+---------------------------+------+
 |      |Instance               |Module                     |Cells |
 +------+-----------------------+---------------------------+------+
-|1     |top                    |                           |   703|
-|2     |  alu                  |ALU                        |    43|
-|3     |    Reg_A              |Register_9                 |    32|
-|4     |    Reg_F              |Register__parameterized1   |     8|
+|1     |top                    |                           |   842|
+|2     |  alu                  |ALU                        |    32|
+|3     |    Reg_A              |Register_9                 |    19|
+|4     |    Reg_F              |Register__parameterized1   |    10|
 |5     |    misc               |Misc_ALU                   |     3|
 |6     |      daa              |DAA                        |     3|
-|7     |  cu                   |ControlUnit                |    96|
-|8     |    cu_clock           |CU_Clock                   |    93|
+|7     |  cu                   |ControlUnit                |   156|
+|8     |    cu_clock           |CU_Clock                   |   149|
 |9     |  inc16                |Incrementer_16bit          |     4|
-|10    |  instruction_register |Register                   |   212|
-|11    |  registers            |Register_File              |   303|
-|12    |    Reg_B              |Register_0                 |     8|
-|13    |    Reg_C              |Register_1                 |    11|
-|14    |    Reg_D              |Register_2                 |    63|
-|15    |    Reg_E              |Register_3                 |    50|
-|16    |    Reg_H              |Register_4                 |    24|
-|17    |    Reg_L              |Register_5                 |    52|
+|10    |  instruction_register |Register                   |   447|
+|11    |  registers            |Register_File              |   158|
+|12    |    Reg_B              |Register_0                 |    12|
+|13    |    Reg_C              |Register_1                 |    25|
+|14    |    Reg_D              |Register_2                 |    12|
+|15    |    Reg_E              |Register_3                 |    12|
+|16    |    Reg_H              |Register_4                 |    21|
+|17    |    Reg_L              |Register_5                 |    27|
 |18    |    Reg_PC             |Register__parameterized0   |    16|
 |19    |    Reg_SP             |Register__parameterized0_6 |    17|
 |20    |    Reg_W              |Register_7                 |     8|
-|21    |    Reg_Z              |Register_8                 |    54|
+|21    |    Reg_Z              |Register_8                 |     8|
 +------+-----------------------+---------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 134 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:01:28 . Memory (MB): peak = 1330.098 ; gain = 955.254
+Synthesis finished with 0 errors, 0 critical warnings and 175 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
+Synthesis Optimization Complete : Time (s): cpu = 00:00:54 ; elapsed = 00:01:21 . Memory (MB): peak = 1325.852 ; gain = 948.473
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1343.133 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1338.910 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1448.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1444.590 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 535b484f
+Synth Design complete | Checksum: f8b29224
 INFO: [Common 17-83] Releasing license: Synthesis
-87 Infos, 108 Warnings, 0 Critical Warnings and 0 Errors encountered.
+113 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:01:33 . Memory (MB): peak = 1448.688 ; gain = 1079.062
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1448.688 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 1444.590 ; gain = 1074.398
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1444.590 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.runs/synth_1/CPU.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file CPU_utilization_synth.rpt -pb CPU_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar 24 16:18:14 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Apr  7 02:49:59 2025...

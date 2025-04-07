@@ -72,10 +72,14 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDHLrp_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDSPs8_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/ALU.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ALU_d8_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Add16_r8.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Adder16.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Adder8.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/CU_Clock.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/DAA.v
@@ -84,16 +88,25 @@ read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/INCDECry_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Incrementer_16bit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Incrementer_8Bit.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Interrupt_Address.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/Interrupt_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JP_a16_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDPCSP_HL_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16A_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDca8A_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrp3pA_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrpd16_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDryd8_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Logic_Unit.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/Generics/LowestSetBit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Main_ALU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/MiscALU_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Misc_ALU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/NOP_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/POP_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/PUSH_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register_File.v

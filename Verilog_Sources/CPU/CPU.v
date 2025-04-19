@@ -12,6 +12,7 @@
 // Description: 
 // 
 // Dependencies: 
+//  Bypass_Register.v
 //  Register_File.v
 //  ALUs/
 //      ALU.v
@@ -47,7 +48,7 @@ module CPU(
     //Instruction Register
     wire [7:0] opcode;
     wire writeIR;
-    Register instruction_register
+    Bypass_Register instruction_register
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
@@ -59,12 +60,29 @@ module CPU(
     //Buses
     
     wire [7:0] bus_8bit_src; //A bus to get parameters to functions
+    
+    wire [7:0] bus8_parameter;
+    Pipeline_Register parameter_8bit
+    (.i_Clk(i_Clk),
+    .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
+    .i_Data(bus_8bit_src),
+    .o_Data(bus8_parameter)
+    );
     wire [7:0] bus_8bit_dst; //A bus to get function outputs to destinations
     
     wire [15:0] bus_16bit_src; //A bus to get paramters to functions
+    wire [15:0] bus16_parameter;
+    Pipeline_Register #(.SIZE(16)) parameter_16bit
+    (.i_Clk(i_Clk),
+    .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
+    .i_Data(bus_16bit_src),
+    .o_Data(bus16_parameter)
+    );
     wire [15:0] bus_16bit_dst; //A bus to get function outputs to destinations
     
-    wire [15:0] add16_HL;
+    wire [15:0] HL;
     
     //Register File
     wire [7:0] registers_out;
@@ -84,7 +102,7 @@ module CPU(
     .i_Write16(write16),
     .i_Bus16(bus_16bit_dst),
     .o_Bus16(bus_16bit_src),
-    .o_HL(add16_HL)
+    .o_HL(HL)
     );
     
     //8Bit Stuff
@@ -106,7 +124,7 @@ module CPU(
     .o_Reg_Data(alu_reg_data),
     
     .i_Opcode(opcode),
-    .i_Parameter(bus_8bit_src),
+    .i_Parameter(bus8_parameter),
     .i_Function_Control(alu_control),
     .i_External_Flags(alu_flags_in),
     .i_Save_Flags(alu_save_flags),
@@ -115,7 +133,7 @@ module CPU(
     );
     
     
-    assign o_Bus = bus_8bit_dst;
+    assign o_Bus = bus_8bit_src;
     
    //Puts a byte of the 16bit bus onto the 8bit bus
    //   Bit 0: Low Byte
@@ -125,12 +143,13 @@ module CPU(
     wire [7:0] cu_bus; //A value set directly by the Control Unit
     wire cu_bus_active; //Sets the bus to cu_bus
     assign bus_8bit_src = registers_out |
-                          alu_reg_data;
+                          alu_reg_data |
+                          ({8{bus16_byte_to_bus[1]}} & bus16_parameter[15:8]) |
+                          ({8{bus16_byte_to_bus[0]}} & bus16_parameter[7:0]);
+                      
     assign bus_8bit_dst = alu_result |
                           ({8{o_Bus_In}} & i_Bus) |
-                          ({8{bus16_byte_to_bus[1]}} & bus_16bit_src[15:8]) |
-                          ({8{bus16_byte_to_bus[0]}} & bus_16bit_src[7:0]) |
-                          ({8{move_reg}} & bus_8bit_src) |
+                          ({8{move_reg}} & bus8_parameter) |
                           ({8{cu_bus_active}} & cu_bus);
     
     //16Bit Stuff
@@ -141,8 +160,8 @@ module CPU(
     wire [15:0] add_r8_result;
     wire [3:0] add_r8_flags;
     Add16_r8 add_r8
-    (.i_In16(bus_16bit_src),
-    .i_r8(bus_8bit_src),
+    (.i_In16(bus16_parameter),
+    .i_r8(bus8_parameter),
     .o_Out(add_r8_result),
     .o_Flags(add_r8_flags)
     );
@@ -154,7 +173,7 @@ module CPU(
     wire [1:0] increment16;
     wire [15:0] increment16_result;
     Incrementer_16bit inc16
-    (.i_In(bus_16bit_src),
+    (.i_In(bus16_parameter),
     .i_Active(increment16[0]),
     .i_Decrement(increment16[1]),
     .o_Out(increment16_result),
@@ -166,9 +185,17 @@ module CPU(
     wire [1:0] add16_control;
     wire [15:0] add16_result;
     wire [3:0] add16_flags;
+    wire [15:0] add16_HL;
+    Pipeline_Register #(.SIZE(16)) add16_hl_pipeline
+    (.i_Clk(i_Clk),
+    .i_Enable(i_Enable),
+    .i_nRst(i_nRst),
+    .i_Data(HL),
+    .o_Data(add16_HL)
+    );
     Adder16 add16
     (.i_A(add16_HL),
-    .i_B(bus_16bit_src),
+    .i_B(bus16_parameter),
     .i_F(flags),
     .o_Result(add16_result),
     .o_F(add16_flags)

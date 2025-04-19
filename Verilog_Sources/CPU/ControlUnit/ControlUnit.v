@@ -120,13 +120,13 @@ module ControlUnit(
     wire [3:0] cycle_step; //Which T-Cycle we're in with in the M-Cycle (4 T in 1 M) 
     Decoder #(.SIZE(4)) step_decoder
     (.i_In(step[1:0]),
-    .i_Disable(IR_read_step),
+    .i_Disable(1'b0),
     .o_Out(cycle_step)
     );
     wire [7:0] cycle_count; //How many M-Cycles since the start of the Opcode
     Decoder #(.SIZE(8)) cycle_decoder
     (.i_In(step[4:2]),
-    .i_Disable(IR_read_step),
+    .i_Disable(1'b0),
     .o_Out(cycle_count)
     );
     
@@ -140,7 +140,7 @@ module ControlUnit(
     wire [1:0] fetch_increment16;
     wire fetch_reset_cycle;
     NOP_Microcode fetch
-    (.i_Active((initialize_fetch | end_opcode_fetch) & ~halted),
+    (.i_Active((end_opcode_fetch) & ~halted),
     .i_Cycle_Step(cycle_step),
     .o_Read16(fetch_read16),
     .o_Write16(fetch_write16),
@@ -388,7 +388,7 @@ module ControlUnit(
     );
     
     reg CB_Enabled = 1'b0;
-    wire CB_Active = CB_Enabled & ~(halted | IR_read_step | initialize_fetch);
+    wire CB_Active = CB_Enabled & ~(halted | initialize_fetch);
     
     wire CB_IR_Fetch;
     wire Disable_CB;
@@ -419,7 +419,7 @@ module ControlUnit(
     .o_ALU_Control(CB_ALU_Control)
     );
     
-    assign disable_opcode_processing = IR_read_step | initialize_fetch | halted | CB_Enabled;
+    assign disable_opcode_processing = initialize_fetch | halted | CB_Enabled;
     
     assign o_WriteIR = IR_read_step;
     
@@ -444,7 +444,7 @@ module ControlUnit(
     assign o_Bus_Value = interrupt_Bus_Value | x3_Bus_Value;
     assign o_Bus_Value_Active = interrupt_Bus_Value_Active | x3_Bus_Value_Active;
     
-    assign end_opcode_fetch = x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch | CB_IR_Fetch | interrupt_IR_Fetch;
+    assign end_opcode_fetch = initialize_fetch | x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch | CB_IR_Fetch | interrupt_IR_Fetch;
     assign reset_cycle = fetch_reset_cycle | (&step[1:0] & halted) | x3_Reset_Cycle;
     
     always @(posedge(i_Clk), negedge(i_nRst)) begin

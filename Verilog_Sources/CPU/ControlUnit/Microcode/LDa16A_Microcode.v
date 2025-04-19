@@ -38,16 +38,17 @@ module LDa16A_Microcode(
     output [1:0] o_Increment16
     );
     
-    wire immediate_access = |i_Cycle_Count[1:0] & i_Cycle_Step[1] & i_Active;
+    wire immediate_access = |i_Cycle_Count[1:0] & i_Cycle_Step[0] & i_Active;
+    wire increment_pc = |i_Cycle_Count[1:0] & i_Cycle_Step[1] & i_Active;
     wire [1:0] immediate_data = {i_Cycle_Count[1], i_Cycle_Count[2]} & {2{i_Cycle_Step[0] & i_Active}};
-    wire address_target = i_Cycle_Count[2] & i_Cycle_Step[1] & i_Active;
+    wire address_target = i_Cycle_Count[2] & i_Cycle_Step[0] & i_Active;
     wire [1:0] data_access = i_P & {2{i_Cycle_Count[3] & i_Cycle_Step[0] & i_Active}};
     
     assign o_IR_Fetch = i_Cycle_Count[3] & i_Active;
     
     assign o_Write8 = {6'b000000, immediate_data};
-    assign o_Read16 = {|immediate_access, 4'h0, address_target};
-    assign o_Write16 = {|immediate_access, 5'b00000};
+    assign o_Read16 = {immediate_access, 4'h0, address_target};
+    assign o_Write16 = {increment_pc, 5'b00000};
     assign o_ReadALU8 = {1'b0, data_access[0]};
     assign o_WriteALU8 = {1'b0, data_access[1]};
     assign o_Move_Reg = data_access[0];
@@ -56,5 +57,5 @@ module LDa16A_Microcode(
     assign o_Bus_Out = data_access[0];
     assign o_Address_Out = immediate_access | address_target;
     
-    assign o_Increment16 = {1'b0, immediate_access};
+    assign o_Increment16 = {1'b0, increment_pc};
 endmodule

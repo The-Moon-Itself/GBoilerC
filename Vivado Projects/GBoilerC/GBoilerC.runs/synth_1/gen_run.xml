@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7s25csga324-1" LaunchTime="1744008479" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/CPU.dcp">
-  <File Type="PA-TCL" Name="CPU.tcl"/>
-  <File Type="REPORTS-TCL" Name="CPU_reports.tcl"/>
-  <File Type="RDS-RDS" Name="CPU.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="CPU_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="CPU_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="CPU_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="CPU.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="CPU_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="CPU_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7s25csga324-1" LaunchTime="1745082335" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/CPU.dcp">
+  <File Type="PA-TCL" Name="GBC.tcl"/>
+  <File Type="REPORTS-TCL" Name="GBC_reports.tcl"/>
+  <File Type="RDS-RDS" Name="GBC.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="GBC_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="GBC_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="GBC_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="GBC.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="GBC_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="GBC_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/ADDHLrp_Microcode.v">
@@ -60,6 +60,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/Bypass_Register.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -68,6 +75,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/CPU.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -96,6 +110,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/Generics/Decoder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/High_Ram.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -131,6 +152,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Interrupt_Address.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/Interrupt_Controller.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -249,6 +277,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/Memory_Controllers/OAM_LastPage_Controller.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/POP_Microcode.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -263,7 +298,21 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/Pipeline_Register.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/CPU/ControlUnit/Microcode/RST_Microcode.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -312,8 +361,16 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../../Verilog_Sources/CPU/CPU.v">
+    <File Path="$PPRDIR/../../Verilog_Sources/GBC.v">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Verilog_Sources/Memory_Controllers/Memory_Map.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -321,7 +378,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="CPU"/>
+      <Option Name="TopModule" Val="GBC"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>

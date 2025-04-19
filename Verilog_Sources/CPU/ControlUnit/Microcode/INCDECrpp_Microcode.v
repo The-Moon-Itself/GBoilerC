@@ -32,10 +32,11 @@ module INCDECrpp_Microcode(
     output [1:0] o_Increment16
     );
     
-    wire inc_step = i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
+    wire inc_prep = i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
+    wire inc_save = i_Cycle_Step[2] & i_Cycle_Count[0] & i_Active;
     
     assign o_IR_Fetch = i_Cycle_Count[1] & i_Active;
-    assign o_Read16 = {1'b0, i_P & {4{inc_step}}, 1'b0};
-    assign o_Write16 = o_Read16;
-    assign o_Increment16 = {i_Q[1] & inc_step, inc_step};
+    assign o_Read16 = {1'b0, i_P & {4{inc_prep}}, 1'b0};
+    assign o_Write16 = {1'b0, i_P & {4{inc_save}}, 1'b0};
+    assign o_Increment16 = {i_Q[1] & inc_save, inc_save};
 endmodule

@@ -38,9 +38,10 @@ module LDryd8_Microcode(
     output [1:0] o_Increment16
     );
     
-    wire address_immediate = i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
+    wire address_immediate = i_Cycle_Step[0] & i_Cycle_Count[0] & i_Active;
+    wire increment_pc = i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
     wire read_immediate = i_Cycle_Step[0] & i_Cycle_Count[1] & i_Active;
-    wire address_hl = i_Cycle_Step[1] & i_Cycle_Count[1] & i_Y[6] & i_Active;
+    wire address_hl = i_Cycle_Step[0] & i_Cycle_Count[1] & i_Y[6] & i_Active;
     wire write_hl = i_Cycle_Step[0] & i_Cycle_Count[2] & i_Active;
     wire fetch = ((!i_Y[6] & i_Cycle_Count[1]) | i_Cycle_Count[2]) & i_Active;
     
@@ -48,12 +49,12 @@ module LDryd8_Microcode(
     assign o_Read8 = {7'b0000000, write_hl};
     assign o_Write8 = {i_Y[5:0] & {6{read_immediate}}, 1'b0, i_Y[6] & read_immediate};
     assign o_Read16 = {address_immediate, 1'b0, address_hl, 3'b000};
-    assign o_Write16 = {address_immediate, 5'b00000};
+    assign o_Write16 = {increment_pc, 5'b00000};
     assign o_WriteALU8 = {1'b0, i_Y[7] & read_immediate};
     assign o_Move_Reg = write_hl;
     assign o_Bus_In = read_immediate;
     assign o_Bus_Out = write_hl;
     assign o_Address_Out = address_immediate | address_hl;
-    assign o_Increment16 = {1'b0, address_immediate};
+    assign o_Increment16 = {1'b0, increment_pc};
     
 endmodule

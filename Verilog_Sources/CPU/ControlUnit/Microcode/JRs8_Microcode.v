@@ -38,17 +38,19 @@ module JRs8_Microcode(
     output [1:0] o_Add_r8_Control
     );
     
-    wire address_immediate = i_Cycle_Count[0] & i_Cycle_Step[1] & i_Active;
+    wire address_immediate = i_Cycle_Count[0] & i_Cycle_Step[0] & i_Active;
+    wire increment_pc = i_Cycle_Count[0] & i_Cycle_Step[1] & i_Active;
     wire read_immediate = i_Cycle_Count[1] & i_Cycle_Step[0] & i_Active;
     
     wire condition_met = ((i_Y & i_Conditions) != 0) | i_Always;
-    wire jump = i_Cycle_Count[1] & i_Cycle_Step[1] & condition_met & i_Active;
+    wire jump_params = i_Cycle_Count[1] & i_Cycle_Step[1] & condition_met & i_Active;
+    wire jump = i_Cycle_Count[1] & i_Cycle_Step[2] & condition_met & i_Active;
     
-    assign o_Read8 = {7'b0000000, jump};
+    assign o_Read8 = {7'b0000000, jump_params};
     assign o_Write8 = {7'b0000000, read_immediate};
-    assign o_Read16 = {address_immediate | jump, 5'b00000};
-    assign o_Write16 = o_Read16;
-    assign o_Increment16 = {1'b0, address_immediate};
+    assign o_Read16 = {address_immediate | jump_params, 5'b00000};
+    assign o_Write16 = {increment_pc | jump, 5'b00000};
+    assign o_Increment16 = {1'b0, increment_pc};
     assign o_Add_r8_Control = {1'b0, jump};
     assign o_Bus_In = read_immediate;
     assign o_Address_Out = address_immediate;

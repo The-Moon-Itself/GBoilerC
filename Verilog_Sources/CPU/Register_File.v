@@ -51,88 +51,84 @@ module Register_File(
     
     //8Bit Registers
     
-    //These will be useful later for the 16bit writes
-    wire [7:0] data_high8bits;
-    wire [7:0] data_low8bits;
-    
     //WZ are only used within opcodes to transfer data. They're essentially temporary values.
     wire [7:0] w_data;
-    Register Reg_W
+    Bypass_Register Reg_W
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[0] | i_Write16[0]),
-    .i_Data(data_high8bits),
+    .i_Data(i_Write16[0] ? i_Bus16[15:8] : i_Bus8),
     .o_Data(w_data)
     );
     
     wire [7:0] z_data;
-    Register Reg_Z
+    Bypass_Register Reg_Z
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[1] | i_Write16[0]),
-    .i_Data(data_low8bits),
+    .i_Data(i_Write16[0] ? i_Bus16[7:0] : i_Bus8),
     .o_Data(z_data)
     );
     
     wire [7:0] b_data;
-    Register Reg_B
+    Bypass_Register Reg_B
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[2] | i_Write16[1]),
-    .i_Data(data_high8bits),
+    .i_Data(i_Write16[1] ? i_Bus16[15:8] : i_Bus8),
     .o_Data(b_data)
     );
     
     wire [7:0] c_data;
-    Register Reg_C
+    Bypass_Register Reg_C
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[3] | i_Write16[1]),
-    .i_Data(data_low8bits),
+    .i_Data(i_Write16[1] ? i_Bus16[7:0] : i_Bus8),
     .o_Data(c_data)
     );
     
     wire [7:0] d_data;
-    Register Reg_D
+    Bypass_Register Reg_D
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[4] | i_Write16[2]),
-    .i_Data(data_high8bits),
+    .i_Data(i_Write16[2] ? i_Bus16[15:8] : i_Bus8),
     .o_Data(d_data)
     );
     
     wire [7:0] e_data;
-    Register Reg_E
+    Bypass_Register Reg_E
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[5] | i_Write16[2]),
-    .i_Data(data_low8bits),
+    .i_Data(i_Write16[2] ? i_Bus16[7:0] : i_Bus8),
     .o_Data(e_data)
     );
     
     wire [7:0] h_data;
-    Register Reg_H
+    Bypass_Register Reg_H
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[6] | i_Write16[3]),
-    .i_Data(data_high8bits),
+    .i_Data(i_Write16[3] ? i_Bus16[15:8] : i_Bus8),
     .o_Data(h_data)
     );
     
     wire [7:0] l_data;
-    Register Reg_L
+    Bypass_Register Reg_L
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
     .i_Write(i_Write8[7] | i_Write16[3]),
-    .i_Data(data_low8bits),
+    .i_Data(i_Write16[3] ? i_Bus16[7:0] : i_Bus8),
     .o_Data(l_data)
     );
     assign o_HL = {h_data, l_data};
@@ -155,7 +151,7 @@ module Register_File(
     wire [15:0] hl_data = {h_data, l_data};
     
     wire [15:0] sp_data;
-    Register #(.SIZE(16)) Reg_SP
+    Bypass_Register #(.SIZE(16)) Reg_SP
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
@@ -166,7 +162,7 @@ module Register_File(
     
     
     wire [15:0] pc_data;
-    Register #(.SIZE(16)) Reg_PC
+    Bypass_Register #(.SIZE(16)) Reg_PC
     (.i_Clk(i_Clk),
     .i_Enable(i_Enable),
     .i_nRst(i_nRst),
@@ -181,11 +177,5 @@ module Register_File(
                      ({16{i_Read16[3]}} & hl_data) |
                      ({16{i_Read16[4]}} & sp_data) |
                      ({16{i_Read16[5]}} & pc_data);
-    
-    //Need some logic to know when to inject our 16bit values into the 8bit registers 
-    wire write_16_to_8 = i_Write16[0] | i_Write16[1] | i_Write16[2] | i_Write16[3];
-    //Here's these guys again
-    assign data_high8bits = write_16_to_8 ? i_Bus16[15:8] : i_Bus8;
-    assign data_low8bits  = write_16_to_8 ? i_Bus16[7:0] : i_Bus8;
     
 endmodule

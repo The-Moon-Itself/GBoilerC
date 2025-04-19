@@ -46,20 +46,22 @@ module RET_Microcode(
     wire [3:0] offsetted_cycles = i_Always ? i_Cycle_Count[3:0] : i_Cycle_Count[4:1]; //Conditional RETs take an extra cycle for some reason
     wire conditions_met = (|{i_Y & i_Conditions} | i_Always) & i_Active;
     
-    wire pop_address = conditions_met & i_Cycle_Step[1] & |offsetted_cycles[1:0];
+    wire pop_address = conditions_met & i_Cycle_Step[0] & |offsetted_cycles[1:0];
+    wire sp_increment = conditions_met & i_Cycle_Step[1] & |offsetted_cycles[1:0];
     wire pop_data_in = conditions_met & i_Cycle_Step[0];
+    wire prep_param = i_Cycle_Step[2] & offsetted_cycles[2] & i_Active;
     wire set_pc = i_Cycle_Step[3] & offsetted_cycles[2] & i_Active;
     
     assign o_IR_Fetch = (conditions_met ? offsetted_cycles[3] : offsetted_cycles[0]) & i_Active;
     
     assign o_Write8 = {6'b000000, {offsetted_cycles[1], offsetted_cycles[2]} & {2{pop_data_in}}};
-    assign o_Read16 = {1'b0, pop_address, 3'b000, set_pc};
-    assign o_Write16 = {set_pc, pop_address, 4'b0000};
+    assign o_Read16 = {1'b0, pop_address, 3'b000, prep_param};
+    assign o_Write16 = {set_pc, sp_increment, 4'b0000};
     
     assign o_Bus_In = pop_data_in & |offsetted_cycles[2:1];
     assign o_Address_Out = pop_address;
     
-    assign o_Increment16 = {1'b0, pop_address};
+    assign o_Increment16 = {1'b0, sp_increment};
     
     assign o_EI = i_RETI & i_Active;
 endmodule

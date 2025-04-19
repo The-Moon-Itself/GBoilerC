@@ -30,10 +30,11 @@ module NOP_Microcode(
     output o_Reset_Cycle
     );
     
+    wire step_1 = i_Cycle_Step[0] & i_Active;
     wire step_2 = i_Cycle_Step[1] & i_Active;
-    assign o_Read16 = {step_2, 5'b00000};
+    assign o_Read16 = {step_1, 5'b00000};
     assign o_Write16 = {step_2, 5'b00000};
-    assign o_Address_Out = step_2;
+    assign o_Address_Out = step_1;
     assign o_Increment16 = {1'b0, step_2};
     wire step_4 = i_Cycle_Step[3] & i_Active;
     assign o_Reset_Cycle = step_4;

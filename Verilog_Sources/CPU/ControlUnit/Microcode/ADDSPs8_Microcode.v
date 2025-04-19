@@ -36,17 +36,19 @@ module ADDSPs8_Microcode(
     output [1:0] o_Add_r8_Control
     );
     
-    wire immediate_address = i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
+    wire immediate_address = i_Cycle_Step[0] & i_Cycle_Count[0] & i_Active;
+    wire increment_pc = i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
     wire immediate_data_in = i_Cycle_Step[0] & i_Cycle_Count[1] & i_Active;
-    wire add_r8  = i_Cycle_Step[1] & i_Cycle_Count[1] & i_Active;
+    wire prep_params = i_Cycle_Step[1] & i_Cycle_Count[1] & i_Active;
+    wire add_r8  = i_Cycle_Step[2] & i_Cycle_Count[1] & i_Active;
     
     assign o_IR_Fetch = ((i_P[0] & i_Cycle_Count[3]) | (i_P[1] & i_Cycle_Count[2])) & i_Active;
-    assign o_Read8 = {7'b0000000, add_r8};
+    assign o_Read8 = {7'b0000000, prep_params};
     assign o_Write8 = {7'b0000000, immediate_data_in};
-    assign o_Read16 = {immediate_address, add_r8, 4'h0};
-    assign o_Write16 = {immediate_address, {i_P[0], i_P[1]} & {2{add_r8}}, 3'b000};
+    assign o_Read16 = {immediate_address, prep_params, 4'h0};
+    assign o_Write16 = {increment_pc, {i_P[0], i_P[1]} & {2{add_r8}}, 3'b000};
     assign o_Bus_In = immediate_data_in;
     assign o_Address_Out = immediate_address;
-    assign o_Increment16 = {1'b0, immediate_address};
+    assign o_Increment16 = {1'b0, increment_pc};
     assign o_Add_r8_Control = {2{add_r8}};
 endmodule

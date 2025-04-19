@@ -1,0 +1,67 @@
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_GBC_behav xil_defaultlib.tb_GBC xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Register
+Compiling module xil_defaultlib.Bypass_Register
+Compiling module xil_defaultlib.Pipeline_Register
+Compiling module xil_defaultlib.Pipeline_Register(SIZE=16)
+Compiling module xil_defaultlib.Register(SIZE=16)
+Compiling module xil_defaultlib.Bypass_Register(SIZE=16)
+Compiling module xil_defaultlib.Register_File
+Compiling module xil_defaultlib.Register(SIZE=4)
+Compiling module xil_defaultlib.Adder8
+Compiling module xil_defaultlib.Main_ALU
+Compiling module xil_defaultlib.Incrementer_8Bit
+Compiling module xil_defaultlib.Logic_Unit
+Compiling module xil_defaultlib.DAA
+Compiling module xil_defaultlib.Misc_ALU
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.Add16_r8
+Compiling module xil_defaultlib.Incrementer_16bit
+Compiling module xil_defaultlib.Adder16
+Compiling module xil_defaultlib.CU_Clock
+Compiling module xil_defaultlib.Decoder(SIZE=4)
+Compiling module xil_defaultlib.Decoder
+Compiling module xil_defaultlib.NOP_Microcode
+Compiling module xil_defaultlib.Decoder(SIZE=2)
+Compiling module xil_defaultlib.LDa16SP_Microcode
+Compiling module xil_defaultlib.LDrpd16_Microcode
+Compiling module xil_defaultlib.JRs8_Microcode
+Compiling module xil_defaultlib.ADDHLrp_Microcode
+Compiling module xil_defaultlib.LDrp3pA_Microcode
+Compiling module xil_defaultlib.INCDECrpp_Microcode
+Compiling module xil_defaultlib.INCDECry_Microcode
+Compiling module xil_defaultlib.LDryd8_Microcode
+Compiling module xil_defaultlib.MiscALU_Microcode
+Compiling module xil_defaultlib.X0
+Compiling module xil_defaultlib.X1
+Compiling module xil_defaultlib.X2
+Compiling module xil_defaultlib.RET_Microcode
+Compiling module xil_defaultlib.LDca8A_Microcode
+Compiling module xil_defaultlib.ADDSPs8_Microcode
+Compiling module xil_defaultlib.POP_Microcode
+Compiling module xil_defaultlib.LDPCSP_HL_Microcode
+Compiling module xil_defaultlib.JP_a16_Microcode
+Compiling module xil_defaultlib.LDa16A_Microcode
+Compiling module xil_defaultlib.CALL_Microcode
+Compiling module xil_defaultlib.PUSH_Microcode
+Compiling module xil_defaultlib.ALU_d8_Microcode
+Compiling module xil_defaultlib.RST_Microcode
+Compiling module xil_defaultlib.X3
+Compiling module xil_defaultlib.LowestSetBit(SIZE=5)
+Compiling module xil_defaultlib.Interrupt_Address
+Compiling module xil_defaultlib.Interrupt_Microcode
+Compiling module xil_defaultlib.CB_Microcode
+Compiling module xil_defaultlib.ControlUnit
+Compiling module xil_defaultlib.CPU
+Compiling module xil_defaultlib.tb_GBC
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_GBC_behav

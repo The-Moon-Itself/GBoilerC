@@ -1,0 +1,98 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDHLrp_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ADDHLrp_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ADDSPs8_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ADDSPs8_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/ALU_d8_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_d8_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Add16_r8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Add16_r8
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Adder16.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Adder16
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Adder8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Adder8
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bypass_Register.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Bypass_Register
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CALL_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CB_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/CPU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CPU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/CU_Clock.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CU_Clock
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/ControlUnit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ControlUnit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/DAA.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DAA
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/Generics/Decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/INCDECrpp_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module INCDECrpp_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/INCDECry_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module INCDECry_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bit16/Incrementer_16bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Incrementer_16bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Incrementer_8Bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Incrementer_8Bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Interrupt_Address.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Interrupt_Address
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/Interrupt_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Interrupt_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JP_a16_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module JP_a16_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module JRs8_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDPCSP_HL_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDPCSP_HL_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16A_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDa16A_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDa16SP_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDca8A_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDca8A_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrp3pA_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDrp3pA_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDrpd16_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDrpd16_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/LDryd8_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LDryd8_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Logic_Unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Logic_Unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/Generics/LowestSetBit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LowestSetBit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Main_ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Main_ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/MiscALU_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MiscALU_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Misc_ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Misc_ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/NOP_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module NOP_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/POP_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module POP_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/PUSH_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PUSH_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Pipeline_Register.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Pipeline_Register
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RET_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/RST_Microcode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RST_Microcode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Register
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register_File.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Register_File
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module X0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module X1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module X2
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X3.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module X3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.srcs/sim_1/new/tb_GBC.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_GBC
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/GitRepos/GBoilerC/Vivado Projects/GBoilerC/GBoilerC.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

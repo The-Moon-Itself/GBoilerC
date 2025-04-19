@@ -35,16 +35,17 @@ module POP_Microcode(
     output [1:0] o_Increment16
     );
     
-    wire SP_address = i_Cycle_Step[1] & |i_Cycle_Count[1:0] & i_Active;
+    wire SP_address = i_Cycle_Step[0] & |i_Cycle_Count[1:0] & i_Active;
+    wire SP_Increment = i_Cycle_Step[1] & |i_Cycle_Count[1:0] & i_Active;
     wire [1:0] pop_data = {2{i_Cycle_Step[0] & i_Active}} & {i_Cycle_Count[1], i_Cycle_Count[2]};
     
     assign o_IR_Fetch = i_Active & i_Cycle_Count[2];
     assign o_Write8 = {{{2{i_P[2]}},{2{i_P[1]}},{2{i_P[0]}}} & {3{pop_data}}, 2'b00};
     assign o_Read16 = {1'b0, SP_address, 4'h0};
-    assign o_Write16 = {1'b0, SP_address, 4'h0};
+    assign o_Write16 = {1'b0, SP_Increment, 4'h0};
     assign o_WriteALU8 = {2{i_P[3]}} & pop_data;
     assign o_Bus_In = |pop_data;
     assign o_Address_Out = SP_address;
-    assign o_Increment16 = {1'b0, SP_address};
+    assign o_Increment16 = {1'b0, SP_Increment};
     
 endmodule

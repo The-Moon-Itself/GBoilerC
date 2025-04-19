@@ -37,20 +37,22 @@ module PUSH_Microcode(
     );
     
     
-    wire predecrement_sp = i_Cycle_Step[2] & i_Cycle_Count[0] & i_Active;
-    wire [1:0] push_address = {2{i_Cycle_Step[1] & i_Active}} & i_Cycle_Count[2:1];
+    wire prep_param = i_Cycle_Step[2] & i_Cycle_Count[0] & i_Active;
+    wire predecrement_sp = i_Cycle_Step[3] & i_Cycle_Count[0] & i_Active;
+    wire [1:0] push_address = i_Cycle_Step[0] & i_Active & |i_Cycle_Count[2:1];
+    wire dec_sp = i_Cycle_Step[1] & i_Active & i_Cycle_Count[1];
     wire [1:0] push_data_out = {2{i_Cycle_Step[0] & i_Active}} & i_Cycle_Count[3:2];
     
     assign o_IR_Fetch = i_Cycle_Count[3] & i_Active;
     
     assign o_Read8 = {{{2{i_P[2]}}, {2{i_P[1]}}, {2{i_P[0]}}} & {3{push_data_out}}, 2'b00};
-    assign o_Read16 = {1'b0, predecrement_sp | |push_address, 4'h0};
-    assign o_Write16 = {1'b0, predecrement_sp | push_address[0], 4'b0};
+    assign o_Read16 = {1'b0, prep_param | push_address, 4'h0};
+    assign o_Write16 = {1'b0, predecrement_sp | dec_sp, 4'b0};
     assign o_ReadALU8 = {2{i_P[3]}} & push_data_out;
     
     assign o_Move_Reg = |push_data_out;
     assign o_Bus_Out = |push_data_out;
     assign o_Address_Out = |push_address;
     
-    assign o_Increment16 = {2{predecrement_sp | push_address[0]}};
+    assign o_Increment16 = {2{predecrement_sp | dec_sp}};
 endmodule

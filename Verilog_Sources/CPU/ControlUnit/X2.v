@@ -36,15 +36,16 @@ module X2(
     output [6:0] o_ALU_Control
     );
     
+    wire param_prep = (i_Z[6] ? (i_Cycle_Step[2] & i_Cycle_Count[1]) : (i_Cycle_Step[1] & i_Cycle_Count[0])) & i_Active;
     wire alu_step = (i_Z[6] ? (i_Cycle_Step[2] & i_Cycle_Count[1]) : (i_Cycle_Step[2] & i_Cycle_Count[0])) & i_Active;
-    wire hl_address = i_Z[6] & i_Cycle_Step[1] & i_Cycle_Count[0] & i_Active;
+    wire hl_address = i_Z[6] & i_Cycle_Step[0] & i_Cycle_Count[0] & i_Active;
     wire hl_data = i_Z[6] & i_Cycle_Step[0] & i_Cycle_Count[1] & i_Active;
     
     assign o_IR_Fetch = (i_Z[6] ? i_Cycle_Count[1] : i_Cycle_Count[0]) & i_Active;
-    assign o_Read8 = {i_Z[5:0] & {6{alu_step}}, 1'b0, i_Z[6] & alu_step};
+    assign o_Read8 = {i_Z[5:0] & {6{param_prep}}, 1'b0, i_Z[6] & param_prep};
     assign o_Write8 = {7'b0000000, hl_data};
     assign o_Read16 = {2'b00, hl_address, 3'b000};
-    assign o_ReadALU8 = {1'b0, i_Z[7] & alu_step};
+    assign o_ReadALU8 = {1'b0, i_Z[7] & param_prep};
     assign o_WriteALU8 = {1'b0, alu_step};
     assign o_Bus_In = hl_data;
     assign o_Address_Out = hl_address;

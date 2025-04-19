@@ -34,14 +34,16 @@ module LDrpd16_Microcode(
     output [1:0] o_Increment16
     );
     
-    wire set_address = i_Active & i_Cycle_Step[1] & (i_Cycle_Count[0] | i_Cycle_Count[1]);
+    wire set_address = i_Active & i_Cycle_Step[0] & (i_Cycle_Count[0] | i_Cycle_Count[1]);
+    wire update_address = i_Active & i_Cycle_Step[1] & (i_Cycle_Count[0] | i_Cycle_Count[1]);
     wire read_memory = i_Active & i_Cycle_Step[0] & (i_Cycle_Count[1] | i_Cycle_Count[2]);
-    wire move_value = i_Active & i_Cycle_Step[2] & i_Cycle_Count[2];
+    wire to_parameter = i_Active & i_Cycle_Step[2] & i_Cycle_Count[2];
+    wire to_register = i_Active & i_Cycle_Step[3] & i_Cycle_Count[2];
     assign o_Write8 = {8{read_memory}} & {6'b000000, i_Cycle_Count[1], i_Cycle_Count[2]}; //Little Endian
-    assign o_Read16 = {set_address, 4'h0, move_value};
-    assign o_Write16 = {set_address, i_P & {4{move_value}}, 1'b0};
-    assign o_Increment16 = {1'b0, set_address};
-    assign o_Address_Out = o_Increment16[0];
+    assign o_Read16 = {set_address, 4'h0, to_parameter};
+    assign o_Write16 = {update_address, i_P & {4{to_register}}, 1'b0};
+    assign o_Increment16 = {1'b0, update_address};
+    assign o_Address_Out = set_address;
     assign o_Bus_In = read_memory;
     assign o_IR_Fetch = i_Active & i_Cycle_Count[2];
     

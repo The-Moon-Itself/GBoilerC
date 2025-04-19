@@ -33,13 +33,14 @@ module LDPCSP_HL_Microcode(
     output [1:0] o_Increment16
     );
     
+    wire move_param = |(i_P & i_Cycle_Step[1:0]) & i_Active;
     wire mov_step = |(i_P & i_Cycle_Step[2:1]) & i_Active;
     
     assign o_IR_Fetch = i_Cycle_Count[1] & i_Active;
     assign o_Reset_Cycle = i_Active & i_Cycle_Step[3] & i_P[0];
-    assign o_Read16 = {2'b00, mov_step, 3'b000};
+    assign o_Read16 = {2'b00, move_param, 3'b000};
     assign o_Write16 = {{i_P[0], i_P[1]} & {2{mov_step}}, 4'h0};
-    assign o_Address_Out = i_P[0] & mov_step;
+    assign o_Address_Out = i_P[0] & move_param;
     assign o_Increment16 = {1'b0, i_P[0] & mov_step};
     
 endmodule

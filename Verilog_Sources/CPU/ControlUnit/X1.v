@@ -44,14 +44,15 @@ module X1(
     
     wire hl_mov = i_Y[6] | i_Z[6];
     wire move_cycle = hl_mov ? i_Cycle_Count[1] : i_Cycle_Count[0];
-    wire move_step = move_cycle & (hl_mov ? i_Cycle_Step[0] : i_Cycle_Step[1]) & not_halt;
-    wire hl_address = hl_mov & i_Cycle_Step[1] & i_Cycle_Count[0] & not_halt;
+    wire move_param = move_cycle & i_Cycle_Step[1] & not_halt;
+    wire move_step = move_cycle & (hl_mov ? i_Cycle_Step[0] : i_Cycle_Step[2]) & not_halt;
+    wire hl_address = hl_mov & i_Cycle_Step[0] & i_Cycle_Count[0] & not_halt;
     
     assign o_IR_Fetch = move_cycle & not_halt;
-    assign o_Read8 = {i_Z[5:0] & {6{move_step}}, 2'b00};
+    assign o_Read8 = {i_Z[5:0] & {6{move_param}}, 2'b00};
     assign o_Write8 = {i_Y[5:0] & {6{move_step}}, 2'b00};
     assign o_Read16 = {i_Cycle_Step[1] & halt, 1'b0, hl_address , 3'b000};
-    assign o_ReadALU8 = {1'b0, i_Z[7] & move_step};
+    assign o_ReadALU8 = {1'b0, i_Z[7] & move_param};
     assign o_WriteALU8 = {1'b0, i_Y[7] & move_step};
     assign o_Move_Reg = ~hl_mov & not_halt;
     assign o_Bus_In = i_Z[6] & move_step;

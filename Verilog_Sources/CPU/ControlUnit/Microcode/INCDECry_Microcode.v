@@ -39,15 +39,16 @@ module INCDECry_Microcode(
     output [6:0] o_ALU_Control
     );
     
+    wire prep_parameter = i_Cycle_Step[1] & (i_Y[6] ? i_Cycle_Count[1] : i_Cycle_Count[0]) & i_Active;
     wire alu_step = i_Cycle_Step[2] & (i_Y[6] ? i_Cycle_Count[1] : i_Cycle_Count[0]) & i_Active;
-    wire send_address = i_Y[6] & i_Cycle_Step[1] & |i_Cycle_Count[1:0] & i_Active;
+    wire send_address = i_Y[6] & i_Cycle_Step[0] & |i_Cycle_Count[1:0] & i_Active;
     wire memory_access = i_Y[6] & i_Cycle_Step[0] & i_Active;
     
     assign o_IR_Fetch = (i_Y[6] ? i_Cycle_Count[2] : i_Cycle_Count[0]) & i_Active;
-    assign o_Read8 = {i_Y[5:0] & {6{alu_step}}, memory_access & i_Cycle_Count[2], i_Y[6] & alu_step};
+    assign o_Read8 = {i_Y[5:0] & {6{prep_parameter}}, memory_access & i_Cycle_Count[2], i_Y[6] & prep_parameter};
     assign o_Write8 = {i_Y[5:0] & {6{alu_step}}, i_Y[6] & alu_step, memory_access & i_Cycle_Count[1]};
     assign o_Read16 = {2'b00, send_address, 3'b000};
-    assign o_ReadALU8 = {1'b0, i_Y[7] & alu_step};
+    assign o_ReadALU8 = {1'b0, i_Y[7] & prep_parameter};
     assign o_WriteALU8 = {1'b0, i_Y[7] & alu_step};
   	assign o_Move_Reg = memory_access & i_Cycle_Count[2];
     assign o_Bus_In = memory_access & i_Cycle_Count[1];

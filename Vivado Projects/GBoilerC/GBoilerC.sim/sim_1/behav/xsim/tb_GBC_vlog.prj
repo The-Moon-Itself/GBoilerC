@@ -1,0 +1,58 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/ADDHLrp_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/ADDSPs8_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/ALU.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/ALU_d8_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/Bit16/Add16_r8.v" \
+"../../../../../../Verilog_Sources/CPU/Bit16/Adder16.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/Adder8.v" \
+"../../../../../../Verilog_Sources/CPU/Bypass_Register.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/CPU.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/CU_Clock.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/ControlUnit.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/DAA.v" \
+"../../../../../../Verilog_Sources/Generics/Decoder.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/INCDECrpp_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/INCDECry_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/Bit16/Incrementer_16bit.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/Incrementer_8Bit.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Interrupt_Address.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/Interrupt_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/JP_a16_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/JRs8_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDPCSP_HL_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDa16A_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDa16SP_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDca8A_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDrp3pA_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDrpd16_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/LDryd8_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/Logic_Unit.v" \
+"../../../../../../Verilog_Sources/Generics/LowestSetBit.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/Main_ALU.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/MiscALU_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ALUs/Misc_ALU.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/NOP_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/POP_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/PUSH_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/Pipeline_Register.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/RET_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/Microcode/RST_Microcode.v" \
+"../../../../../../Verilog_Sources/CPU/Register.v" \
+"../../../../../../Verilog_Sources/CPU/Register_File.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/X0.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/X1.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/X2.v" \
+"../../../../../../Verilog_Sources/CPU/ControlUnit/X3.v" \
+
+sv xil_defaultlib  \
+"../../../../GBoilerC.srcs/sim_1/new/tb_GBC.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

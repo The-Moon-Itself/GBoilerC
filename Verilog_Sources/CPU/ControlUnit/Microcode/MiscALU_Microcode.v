@@ -30,11 +30,12 @@ module MiscALU_Microcode(
     output [6:0] o_ALU_Control
     );
     
+    wire prep_param = i_Cycle_Step[1] & i_Active;
     wire alu_step = i_Cycle_Step[2] & i_Active;
     
     assign o_IR_Fetch = i_Active;
-    assign o_ReadALU8 = {1'b0, alu_step};
-    assign o_WriteALU8 = o_ReadALU8;
+    assign o_ReadALU8 = {1'b0, prep_param};
+    assign o_WriteALU8 = {1'b0, alu_step};
     assign o_ALU_Control = {alu_step, i_Opcode6 & alu_step, {2{!i_Opcode6 & alu_step}}, 3'b000};
     
 endmodule

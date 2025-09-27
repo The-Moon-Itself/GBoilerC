@@ -80,6 +80,7 @@ read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Adder8.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Bypass_Register.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CALL_Microcode.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/Memory_Controllers/CART_Controller.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/CB_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/CPU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/CU_Clock.v
@@ -106,6 +107,7 @@ read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Logic_Unit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/Generics/LowestSetBit.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Main_ALU.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/Memory_Controllers/Memory_Map.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/MiscALU_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ALUs/Misc_ALU.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/NOP_Microcode.v
@@ -117,6 +119,7 @@ read_verilog -library xil_defaultlib {
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/Microcode/RST_Microcode.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/Register_File.v
+  C:/GitRepos/GBoilerC/Verilog_Sources/Memory_Controllers/WRAM_Controller.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X0.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X1.v
   C:/GitRepos/GBoilerC/Verilog_Sources/CPU/ControlUnit/X2.v

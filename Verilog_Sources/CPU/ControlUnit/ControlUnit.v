@@ -357,7 +357,7 @@ module ControlUnit(
     .o_Interrupt_Address(interrupt_target_address)
     );
     
-    wire interrupt_IR_Fetch;
+    wire interrupt_Reset_Cycle;
     wire [7:0] interrupt_Write8;
     wire [5:0] interrupt_Read16;
     wire [5:0] interrupt_Write16;
@@ -373,7 +373,7 @@ module ControlUnit(
     .i_Cycle_Step(cycle_step),
     .i_Cycle_Count(cycle_count),
     .i_Interrupt_Address(interrupt_target_address),
-    .o_IR_Fetch(interrupt_IR_Fetch),
+    .o_Reset_Cycle(interrupt_Reset_Cycle),
     .o_Write8(interrupt_Write8),
     .o_Read16(interrupt_Read16),
     .o_Write16(interrupt_Write16),
@@ -419,7 +419,7 @@ module ControlUnit(
     .o_ALU_Control(CB_ALU_Control)
     );
     
-    assign disable_opcode_processing = initialize_fetch | halted | CB_Enabled;
+    assign disable_opcode_processing = initialize_fetch | halted | CB_Enabled | handling_interrupt | (IME & IR_read_step & interrupt_requested);
     
     assign o_WriteIR = IR_read_step;
     
@@ -444,8 +444,8 @@ module ControlUnit(
     assign o_Bus_Value = interrupt_Bus_Value | x3_Bus_Value;
     assign o_Bus_Value_Active = interrupt_Bus_Value_Active | x3_Bus_Value_Active;
     
-    assign end_opcode_fetch = initialize_fetch | x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch | CB_IR_Fetch | interrupt_IR_Fetch;
-    assign reset_cycle = fetch_reset_cycle | (&step[1:0] & halted) | x3_Reset_Cycle;
+    assign end_opcode_fetch = initialize_fetch | x0_fetch | x1_IR_Fetch | x2_IR_Fetch | x3_Fetch | CB_IR_Fetch;
+    assign reset_cycle = fetch_reset_cycle | (&step[1:0] & halted) | x3_Reset_Cycle | interrupt_Reset_Cycle;
     
     always @(posedge(i_Clk), negedge(i_nRst)) begin
         if(!i_nRst) begin

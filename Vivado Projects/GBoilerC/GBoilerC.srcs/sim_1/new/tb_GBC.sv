@@ -219,8 +219,8 @@ module tb_GBC(
       
       	// Instruction 39: LD SP, HL
       	memory[62] = 8'hf9;
-      	// Instruction 40: JP HL
-      	memory[63] = 8'he9;
+      	// Instruction 40: RST 2
+      	memory[63] = 8'hd7;
       	
       
       	// Function 1:
@@ -267,6 +267,8 @@ module tb_GBC(
     // Clock generation: 10 ns period.
     initial clk = 0;
     always #5 clk = ~clk;
+    
+    initial #4000 i_Interrupts = 5'b00001;
   	
     
     // Memory read simulation:

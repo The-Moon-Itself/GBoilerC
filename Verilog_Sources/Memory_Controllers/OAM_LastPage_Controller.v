@@ -28,7 +28,10 @@ module OAM_LastPage_Controller(
     input i_Address_Out,
     input i_data_access,
     
-    output o_Miss,
+    output o_Address_Miss,
+    output o_Data_Miss,
+    
+    output o_WRAM_Bank_Enable,
     
     output [6:0] o_High_Ram_Address,
     output o_High_Ram_Enable,
@@ -45,7 +48,10 @@ module OAM_LastPage_Controller(
     wire hit = &(active_address[15:9]) & i_data_access;
     wire registers = active_address[8];
     
-    assign o_Miss = ~&(active_address[15:9]) & i_data_access;
+    assign o_Address_Miss = ~&(active_address[15:9]) & i_Address_Out;
+    assign o_Data_Miss = ~&(active_address[15:9]) & i_data_access;
+    
+    assign o_WRAM_Bank_Enable = (active_address[7:0] == 8'h70) & hit;
     
     assign o_High_Ram_Address = active_address[6:0];
     assign o_High_Ram_Enable = &active_address[15:7] & ~&active_address[6:0] & hit;
@@ -53,7 +59,7 @@ module OAM_LastPage_Controller(
     assign o_Interrupt_Controller_Address = active_address[7:4] == 4'h0;
     assign o_Interrupt_Controller_Enable = (hit & registers & &active_address[3:0] & ((active_address[7:4] == 4'h0) | (active_address[7:4] == 4'h0)));
     
-    always @(posedge i_Clk) begin
+    always @(posedge i_Clk, negedge i_nRst) begin
         if(~i_nRst) begin
             saved_address = 16'h0000;
         end

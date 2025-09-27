@@ -50,7 +50,7 @@ module Interrupt_Controller(
     
     assign o_Bus = (i_Register_Select ? IE : IF) & {5{~i_ReadWrite & i_Bus_Enable}};
     
-    always @(posedge i_Clk) begin
+    always @(posedge i_Clk, negedge i_nRst) begin
         if(~i_nRst) begin
             IF <= 5'b00000;
         end

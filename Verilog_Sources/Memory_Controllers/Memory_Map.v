@@ -28,14 +28,14 @@ module Memory_Map(
     input i_Address_Out,
     input i_data_access,
     
-    output [14:0] o_ROM_Address,
-    output o_ROM_Enable,
+    output [14:0] o_CART_Address,
+    output o_CART_Enable,
+    //0: ROM
+    //1: SRAM
+    output o_CART_Chip_Select,
     
     output [12:0] o_VRAM_Address,
     output o_VRAM_Enable,
-    
-    output [12:0] o_ExRAM_Address,
-    output o_ExRAM_Enable,
     
     output [12:0] o_WRAM_Address,
     output o_WRAM_Enable
@@ -44,21 +44,19 @@ module Memory_Map(
     reg [15:0] saved_address = 16'h0000;
     wire [15:0] active_address = i_Address_Out ? i_Address : saved_address;
     
-    assign o_ROM_Address = active_address[14:0];
-    assign o_ROM_Enable = ~active_address[15] & i_data_access;
+    assign o_CART_Chip_Select = active_address[15:13] == 3'b101;
+    assign o_CART_Address = o_CART_Chip_Select ? {2'b00, active_address[12:0]} : active_address[14:0];
+    assign o_CART_Enable = (~active_address[15] | o_CART_Chip_Select) & i_data_access;
     
     assign o_VRAM_Address = active_address[12:0];
     assign o_VRAM_Enable = (active_address[15:13] == 3'b100) & i_data_access;
     
-    assign o_ExRAM_Address = active_address[12:0];
-    assign o_ExRAM_Enable = (active_address[15:13] == 3'b101) & i_data_access;
-    
     assign o_WRAM_Address = active_address[12:0];
     assign o_WRAM_Enable = (active_address[15:13] == 3'b11) & i_data_access;
     
-    always @(posedge i_Clk) begin
+    always @(posedge i_Clk, negedge i_nRst) begin
         if(~i_nRst) begin
-            saved_address = 16'h0000;
+            saved_address <= 16'h0000;
         end
         else if(i_Enable & i_Address_Out) begin
             saved_address <= i_Address;

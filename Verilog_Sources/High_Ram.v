@@ -32,7 +32,7 @@ module High_Ram(
     output [7:0] o_Bus
     );
     
-    reg [6:0] high_ram[7:0];
+    reg [7:0] high_ram[0:7'h7f];
     
     assign o_Bus = high_ram[i_Address] & {8{~i_ReadWrite & i_Bus_Enable}};
     
